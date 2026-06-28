@@ -65,7 +65,7 @@ export default async function FieldNotes() {
             <div className="eyebrow">The full circuit, 60+ events, one summer</div>
             <p className="copy" style={{ marginBottom: 22 }}>
               Every event I showed up to this summer across the SF AI scene, hackathons, demo days, founder dinners, launch
-              nights, watch parties. Field marketing is a contact sport; this is the rep count.
+              nights, watch parties. You only really learn this stuff by being in the room, so here&apos;s the count.
             </p>
             <ol className="circuit">
               {CIRCUIT.map((e) => (

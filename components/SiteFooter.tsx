@@ -10,7 +10,7 @@ export function SiteFooter() {
             San Francisco, CA
           </div>
         </div>
-        <div className="colophon">KANHA JODHPURKAR · EVENT PRODUCTION &amp; FIELD MARKETING · PORTFOLIO 2026</div>
+        <div className="colophon">KANHA JODHPURKAR · FIELD MARKETING &amp; COORDINATION · PORTFOLIO 2026</div>
       </div>
     </footer>
   );

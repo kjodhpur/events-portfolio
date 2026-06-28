@@ -145,7 +145,7 @@ function NewEvent({ onSaved }: { onSaved: () => void }) {
         <div><label>Venue</label><input value={f.venue} onChange={(e) => set("venue", e.target.value)} placeholder="Frontier Tower, SF" /></div>
       </div>
       <div className="row2">
-        <div><label>Your role</label><input value={f.role} onChange={(e) => set("role", e.target.value)} placeholder="Host & Producer" /></div>
+        <div><label>Your role</label><input value={f.role} onChange={(e) => set("role", e.target.value)} placeholder="Host & Coordinator" /></div>
         <div><label>Scale</label><input value={f.scale} onChange={(e) => set("scale", e.target.value)} placeholder="350+ attendees" /></div>
       </div>
       <label>Blurb (one paragraph per line)</label>
