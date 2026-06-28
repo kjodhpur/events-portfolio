@@ -15,3 +15,6 @@ node_modules
 *.MOV
 *.mkv
 *.avi
+
+# local design-reference screenshots — never commit or deploy
+PlanetScale web Sep 2025/
