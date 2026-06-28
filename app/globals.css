@@ -38,6 +38,7 @@ code{font-family:var(--mono);font-size:.92em;background:var(--paper-2);padding:1
 .nav-links{display:flex;gap:20px;align-items:center;margin-left:auto;font-size:13px}
 .nav-links a{text-decoration:none;color:var(--muted);transition:color .15s}
 .nav-links a:hover{color:var(--ink)}
+.nav-links a.active{color:var(--ink)}
 .nav-cta{background:var(--emerald);color:#fff !important;padding:7px 13px}
 .nav-cta:hover{background:var(--emerald-ink)}
 @media(max-width:760px){.nav-links .hide-sm{display:none}}
@@ -115,6 +116,18 @@ code{font-family:var(--mono);font-size:.92em;background:var(--paper-2);padding:1
 .links{font-size:12.5px;line-height:1.9;margin-top:4px}
 .links a{color:var(--link);text-decoration:none}
 .links a:hover{text-decoration:underline}
+/* field-note highlights / improvements */
+.notes{margin:10px 0 14px;border-top:1px solid var(--line);padding-top:16px}
+.note-group{margin-bottom:14px}
+.note-group:last-child{margin-bottom:0}
+.note-head{font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;font-weight:600}
+.note-group.good .note-head{color:var(--emerald)}
+.note-group.tune .note-head{color:var(--signal)}
+.note-group ul{list-style:none}
+.note-group li{display:flex;gap:10px;font-size:13.5px;line-height:1.65;color:var(--body);margin-bottom:7px;max-width:76ch}
+.note-group li::before{flex:0 0 auto;font-weight:700}
+.note-group.good li::before{content:"+";color:var(--emerald)}
+.note-group.tune li::before{content:"\25B3";color:var(--signal)}
 @media(max-width:760px){.event{grid-template-columns:1fr;gap:16px}.meta{padding-right:0;display:flex;flex-wrap:wrap;gap:6px 18px}.meta .pass{width:100%}.ebody h3{padding-left:11px}}
 
 /* ---------- approach / quote ---------- */

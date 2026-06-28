@@ -12,6 +12,12 @@ export type LinkItem = {
   url: string;
   sort: number;
 };
+export type EventNote = {
+  id: string;
+  kind: "highlight" | "improvement";
+  body: string;
+  sort: number;
+};
 export type EventItem = {
   id: string;
   created_at: string;
@@ -23,6 +29,8 @@ export type EventItem = {
   blurb: string | null;
   sort: number;
   published: boolean;
+  category?: string | null;          // 'produced' | 'attended'
   event_media: Media[];
   event_links: LinkItem[];
+  event_notes?: EventNote[];
 };

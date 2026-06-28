@@ -1,5 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { EventCard } from "@/components/EventCard";
+import { SiteNav } from "@/components/SiteNav";
+import { SiteFooter } from "@/components/SiteFooter";
 import type { EventItem } from "@/lib/types";
 
 export const revalidate = 0; // always fresh
@@ -45,6 +47,7 @@ export default async function Home() {
     .from("events")
     .select("*, event_media(*), event_links(*)")
     .eq("published", true)
+    .eq("category", "produced")
     .order("sort", { ascending: false })
     .order("event_date", { ascending: false });
 
@@ -52,34 +55,7 @@ export default async function Home() {
 
   return (
     <>
-      {/* announcement bar */}
-      <div className="announce">
-        <div className="wrap">
-          <span>
-            <span className="dot">●</span>{" "}
-            <span className="label-long">Currently in San Francisco — </span>
-            open to field marketing &amp; event production roles
-          </span>
-          <a href="#contact">Get in touch →</a>
-        </div>
-      </div>
-
-      {/* nav */}
-      <header className="nav">
-        <div className="wrap">
-          <a className="brand" href="#top">
-            <span className="mark" aria-hidden="true" />
-            <b>Kanha Jodhpurkar</b> <span>/ Event Production</span>
-          </a>
-          <nav className="nav-links">
-            <a className="hide-sm" href="#work">Work</a>
-            <a className="hide-sm" href="#approach">Approach</a>
-            <a className="hide-sm" href="#background">Background</a>
-            <a href="#contact">Contact</a>
-            <a className="nav-cta" href="mailto:kjodhpurkar@gmail.com">Get in touch</a>
-          </nav>
-        </div>
-      </header>
+      <SiteNav active="home" />
 
       <main id="top">
         {/* hero */}
@@ -93,7 +69,8 @@ export default async function Home() {
               I&apos;m <b>Kanha Jodhpurkar</b>. I plan, host, and execute in-person experiences where the
               logistics are tight, the vendors and partners walk away genuinely happy, and the room actually
               feels something — then I stay for the breakdown. A few of the events I&apos;ve been on the ground
-              for are below, with <a href="#work">receipts</a>.
+              for are below, with <a href="#work">receipts</a> — and I keep{" "}
+              <a href="/field-notes">field notes</a> on the 50+ I&apos;ve attended.
             </p>
 
             <div className="bullets">
@@ -165,7 +142,7 @@ export default async function Home() {
               premiere — an early signal that I&apos;ll happily do the unglamorous, end-to-end work. That hasn&apos;t
               changed.
             </p>
-            <ul className="checklist" style={{ gridTemplateColumns: "1fr", marginTop: 24, maxWidth: "64ch" }}>
+            <ul className="checklist" style={{ gridTemplateColumns: "1fr", marginTop: 24, maxWidth: "76ch" }}>
               {PRINCIPLES.map((p) => <li key={p}>{p}</li>)}
             </ul>
           </div>
@@ -187,21 +164,7 @@ export default async function Home() {
         </section>
       </main>
 
-      {/* contact footer */}
-      <footer id="contact">
-        <div className="wrap">
-          <div className="grid">
-            <h4>Let&apos;s put<br />on something.</h4>
-            <div className="contact">
-              <div className="mono" style={{ color: "var(--muted)", fontSize: 11, letterSpacing: ".1em" }}>CONTACT</div>
-              <a href="mailto:kjodhpurkar@gmail.com">kjodhpurkar@gmail.com</a><br />
-              <a href="tel:+15715999810">571-599-9810</a><br />
-              San Francisco, CA
-            </div>
-          </div>
-          <div className="colophon">KANHA JODHPURKAR — EVENT PRODUCTION &amp; FIELD MARKETING — PORTFOLIO 2025</div>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }
