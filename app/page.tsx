@@ -3,6 +3,7 @@ import { EventCard } from "@/components/EventCard";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { CountUp } from "@/components/CountUp";
+import { OfficeTrashGame } from "@/components/OfficeTrashGame";
 import type { EventItem } from "@/lib/types";
 
 export const revalidate = 0; // always fresh
@@ -51,29 +52,36 @@ export default async function Home() {
       <main id="top">
         {/* hero */}
         <section className="hero">
-          <div className="wrap">
-            <div className="kicker">Field Marketing &amp; Coordination, San Francisco</div>
-            <h1>
-              I run events <em>end to end</em>, from the first vendor call to the final breakdown.
-            </h1>
-            <p className="lede">
-              I&apos;m <b>Kanha Jodhpurkar</b>. I keep the logistics tight, send the vendors and partners home
-              happy, make the room actually feel like something, and I&apos;m the one still there when it&apos;s
-              time to break it all down. A few I&apos;ve run are <a href="#work">below</a>, plus{" "}
-              <a href="/field-notes">field notes</a> on the 60+ I&apos;ve shown up to.
-            </p>
+          <div className="wrap hero-grid">
+            <div className="hero-main">
+              <div className="kicker">Field Marketing &amp; Coordination, San Francisco</div>
+              <h1>
+                I run events <em>end to end</em>, from the first vendor call to the final breakdown.
+              </h1>
+              <p className="lede">
+                I&apos;m <b>Kanha Jodhpurkar</b>. I keep the logistics tight, send the vendors and partners home
+                happy, make the room actually feel like something, and I&apos;m the one still there when it&apos;s
+                time to break it all down. A few I&apos;ve run are <a href="#work">below</a>, plus{" "}
+                <a href="/field-notes">field notes</a> on the 60+ I&apos;ve shown up to.
+              </p>
 
-            <div className="bullets">
-              <div className="bl-head">The operational backbone, the part I actually enjoy</div>
-              <ul className="checklist">
-                {BACKBONE.map((b) => <li key={b}>{b}</li>)}
-              </ul>
+              <div className="bullets">
+                <div className="bl-head">The operational backbone, the part I actually enjoy</div>
+                <ul className="checklist">
+                  {BACKBONE.map((b) => <li key={b}>{b}</li>)}
+                </ul>
+              </div>
+
+              <div className="stats">
+                <div className="stat"><div className="n"><CountUp end={350} suffix="+" /></div><div className="l">Attendees · largest gathering</div></div>
+                <div className="stat"><div className="n"><CountUp end={60} suffix="+" /></div><div className="l">Luma events attended</div></div>
+              </div>
             </div>
 
-            <div className="stats">
-              <div className="stat"><div className="n"><CountUp end={350} suffix="+" /></div><div className="l">Attendees · largest gathering</div></div>
-              <div className="stat"><div className="n"><CountUp end={60} suffix="+" /></div><div className="l">Luma events attended</div></div>
-            </div>
+            <aside className="hero-aside">
+              <OfficeTrashGame />
+              <div className="aside-note">Slow day at the office? Tidy up. (Yes, it&apos;s the lounge I run events in.)</div>
+            </aside>
           </div>
         </section>
 
