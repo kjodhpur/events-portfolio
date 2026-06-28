@@ -81,6 +81,10 @@ export default async function Home() {
                 <div className="stat"><div className="n"><CountUp end={350} suffix="+" /></div><div className="l">Attendees · largest gathering</div></div>
                 <div className="stat"><div className="n"><CountUp end={60} suffix="+" /></div><div className="l">Luma events attended</div></div>
               </div>
+
+              <p className="hero-close">
+                Exactly the in-person community a <b>developer-first database company</b> is built on.
+              </p>
             </div>
 
             <aside className="hero-aside">
