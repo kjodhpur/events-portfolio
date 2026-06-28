@@ -1,4 +1,4 @@
-export function SiteNav({ active }: { active?: "home" | "field-notes" | "ethos" }) {
+export function SiteNav({ active }: { active?: "home" | "field-notes" | "circuit" | "ethos" }) {
   return (
     <>
       <div className="announce">
@@ -21,6 +21,7 @@ export function SiteNav({ active }: { active?: "home" | "field-notes" | "ethos" 
           <nav className="nav-links">
             <a className="hide-sm" href="/#work">Work</a>
             <a className={active === "field-notes" ? "active" : undefined} href="/field-notes">Field Notes</a>
+            <a className={`hide-sm${active === "circuit" ? " active" : ""}`} href="/circuit">The Circuit</a>
             <a className={`hide-sm${active === "ethos" ? " active" : ""}`} href="/ethos">Ethos</a>
             <a className="hide-sm" href="/#background">Background</a>
             <a className="nav-cta" href="https://calendly.com/kjod" target="_blank" rel="noopener noreferrer">Get in touch</a>
