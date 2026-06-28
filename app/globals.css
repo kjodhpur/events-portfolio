@@ -79,13 +79,11 @@ code{font-family:'JetBrains Mono',monospace;font-size:.9em}
 .copy b{color:var(--ink);font-weight:600}
 
 /* proof grid */
-.proof{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.proof{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
 .proof .cell{border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:104px;
   display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;
   font-family:'JetBrains Mono',monospace;font-size:14.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink)}
 .proof .cell small{color:var(--muted);font-size:10px;letter-spacing:.08em;margin-top:8px;text-transform:uppercase}
-@media(max-width:760px){.proof{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:430px){.proof{grid-template-columns:1fr}}
 
 /* ---------- selected events ---------- */
 .sec-head{display:flex;align-items:baseline;justify-content:space-between;padding:0 0 8px}

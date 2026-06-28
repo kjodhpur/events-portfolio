@@ -14,6 +14,8 @@ const BACKBONE = [
 ];
 
 const GROUND: { name: string; note: string }[] = [
+  { name: "Startup Village", note: "Village Hacks" },
+  { name: "ASU", note: "Village Hacks" },
   { name: "Frontier Tower", note: "PitchTank SF" },
   { name: "a16z", note: "SF circuit" },
   { name: "Cursor", note: "SF circuit" },
