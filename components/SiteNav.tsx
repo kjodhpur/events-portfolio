@@ -1,4 +1,4 @@
-export function SiteNav({ active }: { active?: "home" | "field-notes" }) {
+export function SiteNav({ active }: { active?: "home" | "field-notes" | "approach" }) {
   return (
     <>
       <div className="announce">
@@ -21,7 +21,7 @@ export function SiteNav({ active }: { active?: "home" | "field-notes" }) {
           <nav className="nav-links">
             <a className="hide-sm" href="/#work">Work</a>
             <a className={active === "field-notes" ? "active" : undefined} href="/field-notes">Field Notes</a>
-            <a className="hide-sm" href="/#approach">Approach</a>
+            <a className={`hide-sm${active === "approach" ? " active" : ""}`} href="/approach">Approach</a>
             <a className="hide-sm" href="/#background">Background</a>
             <a href="#contact">Contact</a>
             <a className="nav-cta" href="mailto:kjodhpurkar@gmail.com">Get in touch</a>

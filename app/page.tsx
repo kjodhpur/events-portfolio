@@ -16,30 +16,20 @@ const BACKBONE = [
   "Breakdown & load-out",
 ];
 
-const GROUND: { name: string; logo: string | null }[] = [
-  { name: "ASU", logo: "/media/logos/asu.svg" },
-  { name: "Startup Village", logo: "/media/logos/startup-village.svg" },
-  { name: "Share Our Strength", logo: "/media/logos/share-our-strength.png" },
-  { name: "Akshaya Patra", logo: "/media/logos/akshaya-patra.png" },
-  { name: "HackWithIndia", logo: null },
-  { name: "HackWithUSA", logo: null },
-];
-
-const PRINCIPLES = [
-  "I do the unglamorous parts — setup, breakdown, and the 2am load-out.",
-  "Vendors, partners, and donors walk away genuinely happy. That's the whole job.",
-  "Run-of-show rigor, carried over from a product-delivery background.",
-  "I'm here to grow in event & community marketing — not pass through it.",
+const GROUND: { name: string; logo: string | null; url: string }[] = [
+  { name: "ASU", logo: "/media/logos/asu.svg", url: "https://www.asu.edu" },
+  { name: "Startup Village", logo: "/media/logos/startup-village.svg", url: "https://www.startupvillage.club" },
+  { name: "Share Our Strength", logo: "/media/logos/share-our-strength.png", url: "https://www.shareourstrength.org" },
+  { name: "Akshaya Patra", logo: "/media/logos/akshaya-patra.png", url: "https://www.akshayapatra.org" },
+  { name: "HackWithIndia", logo: null, url: "https://hackwithindia.com" },
+  { name: "HackWithUSA", logo: null, url: "https://www.instagram.com/hackwith.usa/" },
+  { name: "Devnovate", logo: null, url: "https://devnovate.co" },
 ];
 
 const BACKGROUND: { k: string; v: React.ReactNode }[] = [
-  { k: "Advisor", v: <>Strategic advisor to <b><a href="https://devnovate.co" target="_blank" rel="noopener noreferrer">Devnovate</a></b> (founder Aviral Bhardwaj) — 1M+ developers, 65+ hackathons, 25+ partners, 5,000+ projects.</> },
+  { k: "Advisor", v: <>Strategic advisor to <b><a href="https://devnovate.co" target="_blank" rel="noopener noreferrer">Devnovate</a></b> (founder <a href="https://www.linkedin.com/in/aviral-bhardwaj/" target="_blank" rel="noopener noreferrer">Aviral Bhardwaj</a>) — 1M+ developers, 65+ hackathons, 25+ partners, 5,000+ projects. Started 2 weeks ago · 40k+ views.</> },
   { k: "Community", v: <>Plugged into <b>HackWithIndia</b> — India&apos;s largest hackathon community (100k+ students, 5k+ universities) — and <b>HackWithUSA</b>.</> },
-  { k: "Product", v: <>AI Product Owner at <b>Deloitte</b> — Google&apos;s Rapid Innovation &ldquo;Genie&rdquo; project.</> },
-  { k: "Public sector", v: <>IT PMO on a DoD contract · active <b>Secret clearance</b>.</> },
-  { k: "Certified", v: <><b>CSPO</b> (Product Owner) &amp; <b>CSM</b> (ScrumMaster).</> },
-  { k: "Built", v: <>Co-founded <b>HeartMetrics</b> — 1st place, ASU Love AI &amp; Business Challenge.</> },
-  { k: "Content", v: <>Runs <b>CERTIFIED CRACKED</b> — interview &amp; meme reels; event promotion across social.</> },
+  { k: "Content", v: <>Runs <b>CERTIFIED CRACKED</b> — interview &amp; meme reels; event promotion across social channels.</> },
 ];
 
 export default async function Home() {
@@ -71,7 +61,7 @@ export default async function Home() {
               logistics are tight, the vendors and partners walk away genuinely happy, and the room actually
               feels something — then I stay for the breakdown. A few of the events I&apos;ve been on the ground
               for are below, with <a href="#work">receipts</a> — and I keep{" "}
-              <a href="/field-notes">field notes</a> on the 50+ I&apos;ve attended.
+              <a href="/field-notes">field notes</a> on the 64 I&apos;ve attended.
             </p>
 
             <div className="bullets">
@@ -100,30 +90,30 @@ export default async function Home() {
             </p>
             <div className="proof">
               {GROUND.map((g) => (
-                <div className="cell" key={g.name}>
+                <a className="cell" key={g.name} href={g.url} target="_blank" rel="noopener noreferrer">
                   {g.logo ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img className="logo" src={g.logo} alt={g.name} />
                   ) : (
                     <span className="logo-text">{g.name}</span>
                   )}
-                </div>
+                </a>
               ))}
             </div>
           </div>
         </section>
 
-        {/* selected events */}
+        {/* top 3 hosting examples */}
         <section className="section" id="work">
           <div className="wrap">
             <div className="sec-head">
-              <h2>Selected Events</h2>
-              <span className="count">/ {events.length} on record</span>
+              <h2>Top 3 Unique Hosting Examples</h2>
+              <span className="count">/ regional · international · university</span>
             </div>
 
             {events.length === 0 ? (
               <p className="muted" style={{ padding: "40px 0", borderTop: "1px solid var(--line)" }}>
-                No events yet. Head to <code>/admin</code> to add your first one.
+                No events yet.
               </p>
             ) : (
               events.map((ev, i) => <EventCard key={ev.id} event={ev} index={i + 1} />)
@@ -131,33 +121,10 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* approach */}
-        <section className="section" id="approach">
-          <div className="wrap">
-            <div className="eyebrow">Approach</div>
-            <blockquote className="quote">
-              <p>
-                &ldquo;I&apos;ve loved the whole arc of an event since I was a kid — the part where the vendors,
-                the partners, and the room all walk away genuinely happy. I&apos;m not afraid of the 2am
-                load-out.&rdquo;
-              </p>
-              <div className="cite">Kanha Jodhpurkar</div>
-            </blockquote>
-            <p className="copy" style={{ marginTop: 30 }}>
-              In high school I opened and closed the local theater for the <b>2am Avengers: Infinity War</b>{" "}
-              premiere — an early signal that I&apos;ll happily do the unglamorous, end-to-end work. That hasn&apos;t
-              changed.
-            </p>
-            <ul className="checklist" style={{ gridTemplateColumns: "1fr", marginTop: 24, maxWidth: "76ch" }}>
-              {PRINCIPLES.map((p) => <li key={p}>{p}</li>)}
-            </ul>
-          </div>
-        </section>
-
         {/* background */}
         <section className="section" id="background">
           <div className="wrap">
-            <div className="eyebrow">Background — the operational rigor I bring to events</div>
+            <div className="eyebrow">Community, advisory &amp; content</div>
             <ul className="facts">
               {BACKGROUND.map((f) => (
                 <li key={f.k}>

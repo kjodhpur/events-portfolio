@@ -30,6 +30,7 @@ export type EventItem = {
   sort: number;
   published: boolean;
   category?: string | null;          // 'produced' | 'attended'
+  scope?: string | null;             // 'Regional' | 'International' | 'University'
   event_media: Media[];
   event_links: LinkItem[];
   event_notes?: EventNote[];

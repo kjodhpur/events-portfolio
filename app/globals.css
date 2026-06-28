@@ -84,7 +84,8 @@ code{font-family:var(--mono);font-size:.92em;background:var(--paper-2);padding:1
 
 /* proof grid (logo-grid analog) */
 .proof{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
-.proof .cell{border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:96px;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;background:#fff}
+.proof .cell{border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:96px;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;background:#fff;text-decoration:none;color:inherit;transition:background .15s}
+.proof .cell:hover{background:var(--paper-2)}
 .proof .cell .logo{max-height:42px;max-width:80%;width:auto;height:auto;object-fit:contain;display:block}
 .proof .cell .logo-text{font-size:13px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink);font-weight:600}
 
@@ -102,6 +103,11 @@ code{font-family:var(--mono);font-size:.92em;background:var(--paper-2);padding:1
 .meta .row span:first-child{min-width:58px;color:#9a9c92}
 .meta .row span:last-child{color:var(--ink)}
 .meta .role{margin-top:12px;display:inline-block;background:var(--emerald);color:#fff;padding:3px 9px;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase}
+.meta .scope{margin:8px 0 2px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--emerald);font-weight:700}
+.media-strip{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 16px}
+.media-strip video,.media-strip img{height:230px;width:auto;max-width:100%;display:block;border:1px solid var(--line);border-radius:3px;background:#000}
+.media-strip iframe{height:230px;width:409px;max-width:100%;border:1px solid var(--line);border-radius:3px;display:block}
+@media(max-width:600px){.media-strip video,.media-strip img,.media-strip iframe{height:170px}}
 
 .ebody h3{font-weight:700;font-size:clamp(16px,2vw,20px);line-height:1.25;letter-spacing:-.01em;margin-bottom:14px;border-left:3px solid var(--emerald);padding-left:13px}
 .frame{position:relative;width:100%;aspect-ratio:16/9;background:var(--paper-2);border:1px solid var(--line);overflow:hidden;margin-bottom:14px}

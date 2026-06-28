@@ -6,37 +6,32 @@ function fmtDate(d: string | null) {
   try { return new Date(d).getFullYear().toString(); } catch { return d; }
 }
 
-function VideoBlock({ m }: { m: Media }) {
-  if (m.embed_url) {
-    return (
-      <div className="frame media">
-        <iframe src={m.embed_url} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
-      </div>
-    );
+function MediaTile({ m, title }: { m: Media; title: string }) {
+  if (m.kind === "video") {
+    if (m.embed_url) {
+      return <iframe src={m.embed_url} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />;
+    }
+    if (m.public_url) {
+      return <video src={m.public_url} controls playsInline preload="metadata" />;
+    }
+    return null;
   }
   if (m.public_url) {
-    return (
-      <div className="frame media">
-        <video src={m.public_url} controls playsInline preload="metadata" />
-      </div>
-    );
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img src={m.public_url} alt={title} />;
   }
   return null;
 }
 
 export function EventCard({ event, index }: { event: EventItem; index: number }) {
   const media = [...(event.event_media ?? [])].sort((a, b) => a.sort - b.sort);
-  const photos = media.filter((m) => m.kind === "photo" && m.public_url);
-  const videos = media.filter((m) => m.kind === "video");
   const links = [...(event.event_links ?? [])].sort((a, b) => a.sort - b.sort);
-
-  const hero = photos[0];
-  const rest = photos.slice(1);
 
   return (
     <article className="event">
       <div className="meta">
         <div className="pass">PASS NO. {pad(index)}</div>
+        {event.scope && <div className="scope">{event.scope}</div>}
         {event.venue && <div className="row"><span>Venue</span><span>{event.venue}</span></div>}
         {event.scale && <div className="row"><span>Scale</span><span>{event.scale}</span></div>}
         <div className="row"><span>Year</span><span>{fmtDate(event.event_date)}</span></div>
@@ -46,31 +41,13 @@ export function EventCard({ event, index }: { event: EventItem; index: number })
       <div className="ebody">
         <h3>{event.title}</h3>
 
-        {videos.length > 0 && (
-          <div className={videos.length > 1 ? "vgrid" : undefined}>
-            {videos.map((v) => <VideoBlock key={v.id} m={v} />)}
-          </div>
-        )}
-
-        {hero && (
-          <div className="frame media">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={hero.public_url!} alt={event.title} />
+        {media.length > 0 && (
+          <div className="media-strip">
+            {media.map((m) => <MediaTile key={m.id} m={m} title={event.title} />)}
           </div>
         )}
 
         {event.blurb && event.blurb.split("\n").filter(Boolean).map((para, i) => <p key={i}>{para}</p>)}
-
-        {rest.length > 0 && (
-          <div className="gallery">
-            {rest.map((p) => (
-              <div className="frame" key={p.id}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={p.public_url!} alt="" />
-              </div>
-            ))}
-          </div>
-        )}
 
         {links.length > 0 && (
           <div className="links">
