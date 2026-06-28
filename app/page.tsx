@@ -16,15 +16,13 @@ const BACKBONE = [
   "Breakdown & load-out",
 ];
 
-const GROUND: { name: string; note: string }[] = [
-  { name: "Startup Village", note: "Village Hacks" },
-  { name: "ASU", note: "Village Hacks" },
-  { name: "Frontier Tower", note: "PitchTank SF" },
-  { name: "a16z", note: "SF circuit" },
-  { name: "Cursor", note: "SF circuit" },
-  { name: "Akshaya Patra", note: "Fundraiser" },
-  { name: "Share Our Strength", note: "Anti-hunger" },
-  { name: "Luma", note: "50+ events" },
+const GROUND: { name: string; logo: string | null }[] = [
+  { name: "ASU", logo: "/media/logos/asu.svg" },
+  { name: "Startup Village", logo: "/media/logos/startup-village.svg" },
+  { name: "Share Our Strength", logo: "/media/logos/share-our-strength.png" },
+  { name: "Akshaya Patra", logo: "/media/logos/akshaya-patra.png" },
+  { name: "HackWithIndia", logo: null },
+  { name: "HackWithUSA", logo: null },
 ];
 
 const PRINCIPLES = [
@@ -94,16 +92,21 @@ export default async function Home() {
         {/* proof grid */}
         <section className="section">
           <div className="wrap">
-            <div className="eyebrow">On the ground at</div>
+            <div className="eyebrow">Built with · volunteered · advised</div>
             <p className="copy" style={{ marginBottom: 26 }}>
-              Venues, hosts, and partners I&apos;ve produced, worked, or volunteered with — not logos I&apos;m
-              borrowing, but places I&apos;ve actually been on site.
+              Organizations I&apos;ve actually shown up for — <b>ASU</b> and <b>Startup Village</b>, anti-hunger
+              nonprofits <b>Share Our Strength</b> and <b>Akshaya Patra</b>, and India&apos;s largest hackathon
+              community.
             </p>
             <div className="proof">
               {GROUND.map((g) => (
                 <div className="cell" key={g.name}>
-                  {g.name}
-                  <small>{g.note}</small>
+                  {g.logo ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img className="logo" src={g.logo} alt={g.name} />
+                  ) : (
+                    <span className="logo-text">{g.name}</span>
+                  )}
                 </div>
               ))}
             </div>
