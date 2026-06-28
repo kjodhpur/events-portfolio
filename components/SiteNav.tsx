@@ -5,7 +5,7 @@ export function SiteNav({ active }: { active?: "home" | "field-notes" | "ethos" 
         <div className="wrap">
           <span>
             <span className="dot">●</span>{" "}
-            <span className="label-long">Living in SF — </span>
+            <span className="label-long">Living in SF, </span>
             looking for Field Marketing Coordinator roles
           </span>
           <a href="https://calendly.com/kjod" target="_blank" rel="noopener noreferrer">Get in touch →</a>

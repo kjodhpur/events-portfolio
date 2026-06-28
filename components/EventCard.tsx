@@ -1,8 +1,9 @@
 import type { EventItem, Media } from "@/lib/types";
+import { AutoVideo } from "./AutoVideo";
 
 function pad(n: number) { return String(n).padStart(3, "0"); }
 function fmtDate(d: string | null) {
-  if (!d) return "—";
+  if (!d) return "";
   try { return new Date(d).getFullYear().toString(); } catch { return d; }
 }
 
@@ -11,9 +12,7 @@ function MediaTile({ m, title }: { m: Media; title: string }) {
     if (m.embed_url) {
       return <iframe src={m.embed_url} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />;
     }
-    if (m.public_url) {
-      return <video src={m.public_url} controls playsInline preload="metadata" />;
-    }
+    if (m.public_url) return <AutoVideo src={m.public_url} />;
     return null;
   }
   if (m.public_url) {

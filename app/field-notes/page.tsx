@@ -8,7 +8,7 @@ import type { EventItem } from "@/lib/types";
 export const revalidate = 0;
 
 export const metadata = {
-  title: "Field Notes — Kanha Jodhpurkar",
+  title: "Field Notes, Kanha Jodhpurkar",
   description: "Events I've attended across the SF circuit, read through a field-marketing lens.",
 };
 
@@ -31,14 +31,14 @@ export default async function FieldNotes() {
       <main id="top">
         <section className="hero">
           <div className="wrap">
-            <div className="kicker">Field Notes — the attendee&apos;s side of the room</div>
+            <div className="kicker">Field Notes, the attendee&apos;s side of the room</div>
             <h1>
               I study events <em>as a field marketer</em>, not just attend them.
             </h1>
             <p className="lede">
-              Across {CIRCUIT.length} Luma events this summer — at a16z, Cursor, NVIDIA, Vercel, and beyond — I watch how the
+              Across 60+ Luma events this summer, at a16z, Cursor, NVIDIA, Vercel, and beyond, I watch how the
               best teams run the room: registration flow, swag, catering, signage, seat spacing, the small operational details
-              most people miss. Below are a few teardowns — what worked, and what I&apos;d tune — and the full circuit.
+              most people miss. Below are a few teardowns, what worked, and what I&apos;d tune, and the full circuit.
             </p>
           </div>
         </section>
@@ -62,9 +62,9 @@ export default async function FieldNotes() {
 
         <section className="section" id="circuit">
           <div className="wrap">
-            <div className="eyebrow">The full circuit — {CIRCUIT.length} events, one summer</div>
+            <div className="eyebrow">The full circuit, 60+ events, one summer</div>
             <p className="copy" style={{ marginBottom: 22 }}>
-              Every event I showed up to this summer across the SF AI scene — hackathons, demo days, founder dinners, launch
+              Every event I showed up to this summer across the SF AI scene, hackathons, demo days, founder dinners, launch
               nights, watch parties. Field marketing is a contact sport; this is the rep count.
             </p>
             <ol className="circuit">

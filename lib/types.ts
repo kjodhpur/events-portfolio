@@ -17,6 +17,7 @@ export type EventNote = {
   kind: "highlight" | "improvement";
   body: string;
   sort: number;
+  media_ref?: number | null;   // 1-based index of the media tile this note points at
 };
 export type EventItem = {
   id: string;

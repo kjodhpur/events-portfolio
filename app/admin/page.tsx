@@ -245,16 +245,16 @@ function EventRow({ ev, onChange }: { ev: EventItem; onChange: () => void }) {
       <label>Add photos</label>
       <input type="file" accept="image/*" multiple onChange={(e) => uploadFiles(e.target.files, "photo")} />
 
-      <label>Add video file (keep clips short — see README on size limits)</label>
+      <label>Add video file (keep clips short, see README on size limits)</label>
       <input type="file" accept="video/*" onChange={(e) => uploadFiles(e.target.files, "video")} />
 
-      <label>…or paste a video link — YouTube, Vimeo, or a direct .mp4 URL (best for large videos)</label>
+      <label>…or paste a video link, YouTube, Vimeo, or a direct .mp4 URL (best for large videos)</label>
       <div style={{ display: "flex", gap: 8 }}>
         <input value={videoUrl} onChange={(e) => setVideoUrl(e.target.value)} placeholder="https://youtu.be/…  or  https://…/clip.mp4" />
         <button className="btn ghost" onClick={addVideoUrl}>Add</button>
       </div>
       <p className="muted" style={{ marginTop: 6 }}>
-        Direct file uploads above go to Supabase (~50MB/file cap). For larger videos, upload to YouTube/Vimeo (unlisted works) or any host and paste the link here — no size limit.
+        Direct file uploads above go to Supabase (~50MB/file cap). For larger videos, upload to YouTube/Vimeo (unlisted works) or any host and paste the link here, no size limit.
       </p>
 
       <label>Add article / link</label>

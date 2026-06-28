@@ -27,9 +27,9 @@ const GROUND: { name: string; logo: string | null; url: string }[] = [
 ];
 
 const BACKGROUND: { k: string; v: React.ReactNode }[] = [
-  { k: "Advisor", v: <>Strategic advisor to <b><a href="https://devnovate.co" target="_blank" rel="noopener noreferrer">Devnovate</a></b> (founder <a href="https://www.linkedin.com/in/aviral-bhardwaj/" target="_blank" rel="noopener noreferrer">Aviral Bhardwaj</a>) — 1M+ developers, 65+ hackathons, 25+ partners, 5,000+ projects.</> },
-  { k: "Community", v: <>Plugged into <b>MLH</b> (Major League Hacking), <b>HackWithUSA</b>, and <b>HackWithIndia</b> — India&apos;s largest hackathon community (100k+ students, 5k+ universities).</> },
-  { k: "Content", v: <>Started documenting the whole thing two weeks ago — already <b>40k+ views</b>. Also runs <b>CERTIFIED CRACKED</b> (interview &amp; meme reels).</> },
+  { k: "Advisor", v: <>Strategic advisor to <b><a href="https://devnovate.co" target="_blank" rel="noopener noreferrer">Devnovate</a></b> (founder <a href="https://www.linkedin.com/in/aviral-bhardwaj/" target="_blank" rel="noopener noreferrer">Aviral Bhardwaj</a>), 1M+ developers, 65+ hackathons, 25+ partners, 5,000+ projects.</> },
+  { k: "Community", v: <>Plugged into <b>MLH</b> (Major League Hacking), <b>HackWithUSA</b>, and <b>HackWithIndia</b>, India&apos;s largest hackathon community (100k+ students, 5k+ universities).</> },
+  { k: "Content", v: <>Started documenting the whole thing two weeks ago, already <b>40k+ views</b>. Also runs <b>CERTIFIED CRACKED</b> (interview &amp; meme reels).</> },
 ];
 
 export default async function Home() {
@@ -52,20 +52,19 @@ export default async function Home() {
         {/* hero */}
         <section className="hero">
           <div className="wrap">
-            <div className="kicker">Field Marketing &amp; Event Production — San Francisco</div>
+            <div className="kicker">Field Marketing &amp; Event Production, San Francisco</div>
             <h1>
               I run events <em>end to end</em>, from the first vendor call to the final breakdown.
             </h1>
             <p className="lede">
-              I&apos;m <b>Kanha Jodhpurkar</b>. I plan, host, and execute in-person experiences where the
-              logistics are tight, the vendors and partners walk away genuinely happy, and the room actually
-              feels something — then I stay for the breakdown. A few of the events I&apos;ve been on the ground
-              for are below, with <a href="#work">receipts</a> — and I keep{" "}
-              <a href="/field-notes">field notes</a> on the 60+ I&apos;ve attended.
+              I&apos;m <b>Kanha Jodhpurkar</b>, and I run events end to end. I keep the logistics tight, send the
+              vendors and partners home happy, make the room actually feel like something, and I&apos;m still
+              there for the breakdown. A few I&apos;ve run are below with <a href="#work">receipts</a>, plus{" "}
+              <a href="/field-notes">field notes</a> on the 60+ I&apos;ve shown up to.
             </p>
 
             <div className="bullets">
-              <div className="bl-head">The operational backbone — the part I actually enjoy</div>
+              <div className="bl-head">The operational backbone, the part I actually enjoy</div>
               <ul className="checklist">
                 {BACKBONE.map((b) => <li key={b}>{b}</li>)}
               </ul>
@@ -83,7 +82,7 @@ export default async function Home() {
           <div className="wrap">
             <div className="eyebrow">Built with · volunteered · advised</div>
             <p className="copy" style={{ marginBottom: 26 }}>
-              Organizations I&apos;ve actually shown up for — <b>ASU</b> and <b>Startup Village</b>, anti-hunger
+              Organizations I&apos;ve actually shown up for, <b>ASU</b> and <b>Startup Village</b>, anti-hunger
               nonprofits <b>Share Our Strength</b> and <b>Akshaya Patra</b>, and India&apos;s largest hackathon
               community.
             </p>
