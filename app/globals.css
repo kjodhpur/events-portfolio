@@ -130,6 +130,14 @@ code{font-family:var(--mono);font-size:.92em;background:var(--paper-2);padding:1
 .note-group.tune li::before{content:"\25B3";color:var(--signal)}
 @media(max-width:760px){.event{grid-template-columns:1fr;gap:16px}.meta{padding-right:0;display:flex;flex-wrap:wrap;gap:6px 18px}.meta .pass{width:100%}.ebody h3{padding-left:11px}}
 
+/* ---------- the full circuit list ---------- */
+.circuit{list-style:none;border-top:1px solid var(--line)}
+.circuit-item{display:flex;justify-content:space-between;gap:18px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line)}
+.circuit-item a{color:var(--ink);text-decoration:none;font-size:13.5px;line-height:1.4}
+.circuit-item a:hover{color:var(--emerald);text-decoration:underline}
+.circuit-item .host{color:var(--muted);font-size:11px;text-align:right;white-space:nowrap;flex:0 0 auto;max-width:44%;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:600px){.circuit-item{flex-direction:column;gap:2px}.circuit-item .host{text-align:left;max-width:100%;white-space:normal}}
+
 /* ---------- approach / quote ---------- */
 .quote{border-left:3px solid var(--emerald);padding:2px 0 2px 18px;max-width:74ch}
 .quote p{font-weight:600;font-size:clamp(15px,1.8vw,19px);line-height:1.45;letter-spacing:-.005em;color:var(--ink)}

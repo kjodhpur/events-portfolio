@@ -2,6 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { FieldNoteCard } from "@/components/FieldNoteCard";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
+import { CIRCUIT } from "@/lib/circuit";
 import type { EventItem } from "@/lib/types";
 
 export const revalidate = 0;
@@ -35,9 +36,9 @@ export default async function FieldNotes() {
               I study events <em>as a field marketer</em>, not just attend them.
             </h1>
             <p className="lede">
-              Across 50+ Luma events this year — at a16z, Cursor, and beyond — I watch how the best teams run the room:
-              registration flow, swag, catering, signage, seat spacing, the small operational details most people miss.
-              Below are a few teardowns — what worked, and what I&apos;d tune.
+              Across {CIRCUIT.length} Luma events this summer — at a16z, Cursor, NVIDIA, Vercel, and beyond — I watch how the
+              best teams run the room: registration flow, swag, catering, signage, seat spacing, the small operational details
+              most people miss. Below are a few teardowns — what worked, and what I&apos;d tune — and the full circuit.
             </p>
           </div>
         </section>
@@ -56,6 +57,24 @@ export default async function FieldNotes() {
             ) : (
               notes.map((ev, i) => <FieldNoteCard key={ev.id} event={ev} index={i + 1} />)
             )}
+          </div>
+        </section>
+
+        <section className="section" id="circuit">
+          <div className="wrap">
+            <div className="eyebrow">The full circuit — {CIRCUIT.length} events, one summer</div>
+            <p className="copy" style={{ marginBottom: 22 }}>
+              Every event I showed up to this summer across the SF AI scene — hackathons, demo days, founder dinners, launch
+              nights, watch parties. Field marketing is a contact sport; this is the rep count.
+            </p>
+            <ol className="circuit">
+              {CIRCUIT.map((e) => (
+                <li className="circuit-item" key={e.url}>
+                  <a href={e.url} target="_blank" rel="noopener noreferrer">{e.title}</a>
+                  <span className="host">{e.host}</span>
+                </li>
+              ))}
+            </ol>
           </div>
         </section>
       </main>
