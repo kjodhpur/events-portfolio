@@ -9,11 +9,13 @@ import type { EventItem } from "@/lib/types";
 export const revalidate = 0; // always fresh
 
 const BACKBONE = [
-  "Run-of-shows & timelines",
-  "Vendor & catering coordination",
-  "Venue sourcing & rentals",
+  "Run-of-show & planning docs",
+  "Venue sourcing & vendor management",
+  "Catering, rentals & entertainment",
   "Budgets, invoices & contracts",
-  "On-site setup & registration",
+  "Registration, RSVPs & guest lists",
+  "On-site setup & attendee experience",
+  "Swag, merch & event assets",
   "Breakdown & load-out",
 ];
 
@@ -28,9 +30,10 @@ const GROUND: { name: string; logo: string | null; url: string }[] = [
 ];
 
 const BACKGROUND: { k: string; v: React.ReactNode }[] = [
+  { k: "Community", v: <>Embedded in the <b>developer community</b>, <b>MLH</b> (Major League Hacking), <b>HackWithUSA</b>, and <b>HackWithIndia</b> (100k+ students, 5k+ universities), plus the SF startup &amp; AI scene I show up to most weeks.</> },
   { k: "Advisor", v: <>Strategic advisor to <b><a href="https://devnovate.co" target="_blank" rel="noopener noreferrer">Devnovate</a></b> (founder <a href="https://www.linkedin.com/in/aviral-bhardwaj/" target="_blank" rel="noopener noreferrer">Aviral Bhardwaj</a>), 1M+ developers, 65+ hackathons, 25+ partners, 5,000+ projects.</> },
-  { k: "Community", v: <>Plugged into <b>MLH</b> (Major League Hacking), <b>HackWithUSA</b>, and <b>HackWithIndia</b>, India&apos;s largest hackathon community (100k+ students, 5k+ universities).</> },
-  { k: "Content", v: <>I only started filming all this a couple weeks ago and it&apos;s already past <b>40k+ views</b>. I also run <b>CERTIFIED CRACKED</b>, my interview &amp; meme reels.</> },
+  { k: "Promotion", v: <>I document the events I run and show up to, <b>40k+ views</b> in a couple weeks, and run <b>CERTIFIED CRACKED</b> (interview &amp; meme reels). Promoting an event is just storytelling with a guest list.</> },
+  { k: "Toolkit", v: <>I live in <b>Luma</b> for registration &amp; guest lists, run-of-show docs for the timeline, and spreadsheets for budgets, invoices &amp; vendor coordination.</> },
 ];
 
 export default async function Home() {
@@ -54,15 +57,17 @@ export default async function Home() {
         <section className="hero">
           <div className="wrap hero-grid">
             <div className="hero-main">
-              <div className="kicker">Field Marketing &amp; Coordination, San Francisco</div>
+              <div className="kicker">Field Marketing &amp; Event Coordination · San Francisco</div>
               <h1>
-                I run events <em>end to end</em>, from the first vendor call to the final breakdown.
+                I run <em>in-person events</em> end to end, from the first vendor call to the final breakdown.
               </h1>
               <p className="lede">
-                I&apos;m <b>Kanha Jodhpurkar</b>. I keep the logistics tight, send the vendors and partners home
-                happy, make the room actually feel like something, and I&apos;m the one still there when it&apos;s
-                time to break it all down. A few I&apos;ve run are <a href="#work">below</a>, plus{" "}
-                <a href="/field-notes">field notes</a> on the 60+ I&apos;ve shown up to.
+                I&apos;m <b>Kanha Jodhpurkar</b>. I run in-person events for <b>developers, founders, and
+                engineering leaders</b>, executive dinners, hackathons, conferences, and meetups. I keep the
+                run-of-show tight, source the venue and vendors, own registration and the guest list, send
+                everyone home happy, and I&apos;m still the one there for the 2am breakdown. A few I&apos;ve run
+                are <a href="#work">below</a>, plus <a href="/field-notes">field notes</a> on the 60+ I&apos;ve
+                turned up to.
               </p>
 
               <div className="bullets">
@@ -130,7 +135,7 @@ export default async function Home() {
         {/* background */}
         <section className="section" id="background">
           <div className="wrap">
-            <div className="eyebrow">Community, advisory &amp; content</div>
+            <div className="eyebrow">Community, reach &amp; toolkit</div>
             <ul className="facts">
               {BACKGROUND.map((f) => (
                 <li key={f.k}>

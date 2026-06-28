@@ -35,10 +35,11 @@ export default async function FieldNotes() {
               I study events <em>as a field marketer</em>, not just attend them.
             </h1>
             <p className="lede">
-              Across 60+ Luma events this summer, at a16z, Cursor, NVIDIA, Vercel, and beyond, I watch how the
-              best teams run the room: registration flow, swag, catering, signage, seat spacing, the small operational details
-              most people miss. Below are a few teardowns, what worked and what I&apos;d tune. The full run is over on{" "}
-              <a href="/circuit">The Circuit</a>.
+              Across 60+ Luma events this summer, at a16z, Cursor, NVIDIA, Vercel, and beyond, I watched how the
+              best <b>developer-first</b> companies run a room: registration flow, swag, catering, signage, seat
+              spacing, the small operational details most people miss. This is the exact <b>developer and founder
+              community</b> I want to keep building events for. Below are a few teardowns, what worked and what
+              I&apos;d tune. The full run is over on <a href="/circuit">The Circuit</a>.
             </p>
           </div>
         </section>

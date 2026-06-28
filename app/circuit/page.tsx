@@ -20,9 +20,10 @@ export default function Circuit() {
               I showed up to <em>60+ events</em> in a single summer.
             </h1>
             <p className="lede">
-              Every event I could get to this summer across the SF AI scene, hackathons, demo days, founder dinners,
-              launch nights, watch parties. You only really learn this stuff by being in the room, so here&apos;s the
-              full count.
+              Every event I could get to this summer across the SF <b>developer &amp; AI scene</b>, hackathons, demo
+              days, founder dinners, launch nights, watch parties, all tracked through <b>Luma</b>, the same
+              registration platform I run my own events on. You only really learn this stuff by being in the room,
+              so here&apos;s the full count.
             </p>
           </div>
         </section>

@@ -7,10 +7,12 @@ export const metadata = {
 };
 
 const PRINCIPLES = [
-  "I do the unglamorous parts, setup, breakdown, and the 2am load-out.",
-  "Vendors, partners, and donors walk away genuinely happy. That's the whole job.",
+  "I do the unglamorous parts, setup, registration, breakdown, and the 2am load-out.",
+  "Vendors, partners, sponsors, and every attendee walk away genuinely happy. That's the whole job.",
   "Run-of-show rigor, carried over from a product-delivery background.",
-  "I'm here to grow in event & community marketing, not pass through it.",
+  "Two-week timelines and last-minute changes are where I do my best work.",
+  "Evenings, weekends, and the occasional flight for a conference are part of the deal.",
+  "I'm here to grow in field & community marketing, not pass through it.",
 ];
 
 export default function Ethos() {
