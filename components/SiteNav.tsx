@@ -8,7 +8,7 @@ export function SiteNav({ active }: { active?: "home" | "field-notes" | "approac
             <span className="label-long">Currently in San Francisco — </span>
             open to field marketing &amp; event production roles
           </span>
-          <a href="mailto:kjodhpurkar@gmail.com">Get in touch →</a>
+          <a href="https://calendly.com/kjod" target="_blank" rel="noopener noreferrer">Get in touch →</a>
         </div>
       </div>
 
@@ -24,7 +24,7 @@ export function SiteNav({ active }: { active?: "home" | "field-notes" | "approac
             <a className={`hide-sm${active === "approach" ? " active" : ""}`} href="/approach">Approach</a>
             <a className="hide-sm" href="/#background">Background</a>
             <a href="#contact">Contact</a>
-            <a className="nav-cta" href="mailto:kjodhpurkar@gmail.com">Get in touch</a>
+            <a className="nav-cta" href="https://calendly.com/kjod" target="_blank" rel="noopener noreferrer">Get in touch</a>
           </nav>
         </div>
       </header>

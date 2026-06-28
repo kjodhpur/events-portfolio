@@ -23,13 +23,13 @@ const GROUND: { name: string; logo: string | null; url: string }[] = [
   { name: "Akshaya Patra", logo: "/media/logos/akshaya-patra.png", url: "https://www.akshayapatra.org" },
   { name: "HackWithIndia", logo: null, url: "https://hackwithindia.com" },
   { name: "HackWithUSA", logo: null, url: "https://www.instagram.com/hackwith.usa/" },
-  { name: "Devnovate", logo: null, url: "https://devnovate.co" },
+  { name: "Devnovate", logo: "/media/logos/devnovate.ico", url: "https://devnovate.co" },
 ];
 
 const BACKGROUND: { k: string; v: React.ReactNode }[] = [
-  { k: "Advisor", v: <>Strategic advisor to <b><a href="https://devnovate.co" target="_blank" rel="noopener noreferrer">Devnovate</a></b> (founder <a href="https://www.linkedin.com/in/aviral-bhardwaj/" target="_blank" rel="noopener noreferrer">Aviral Bhardwaj</a>) — 1M+ developers, 65+ hackathons, 25+ partners, 5,000+ projects. Started 2 weeks ago · 40k+ views.</> },
-  { k: "Community", v: <>Plugged into <b>HackWithIndia</b> — India&apos;s largest hackathon community (100k+ students, 5k+ universities) — and <b>HackWithUSA</b>.</> },
-  { k: "Content", v: <>Runs <b>CERTIFIED CRACKED</b> — interview &amp; meme reels; event promotion across social channels.</> },
+  { k: "Advisor", v: <>Strategic advisor to <b><a href="https://devnovate.co" target="_blank" rel="noopener noreferrer">Devnovate</a></b> (founder <a href="https://www.linkedin.com/in/aviral-bhardwaj/" target="_blank" rel="noopener noreferrer">Aviral Bhardwaj</a>) — 1M+ developers, 65+ hackathons, 25+ partners, 5,000+ projects.</> },
+  { k: "Community", v: <>Plugged into <b>MLH</b> (Major League Hacking), <b>HackWithUSA</b>, and <b>HackWithIndia</b> — India&apos;s largest hackathon community (100k+ students, 5k+ universities).</> },
+  { k: "Content", v: <>Started documenting the whole thing two weeks ago — already <b>40k+ views</b>. Also runs <b>CERTIFIED CRACKED</b> (interview &amp; meme reels).</> },
 ];
 
 export default async function Home() {
@@ -61,7 +61,7 @@ export default async function Home() {
               logistics are tight, the vendors and partners walk away genuinely happy, and the room actually
               feels something — then I stay for the breakdown. A few of the events I&apos;ve been on the ground
               for are below, with <a href="#work">receipts</a> — and I keep{" "}
-              <a href="/field-notes">field notes</a> on the 64 I&apos;ve attended.
+              <a href="/field-notes">field notes</a> on the 60+ I&apos;ve attended.
             </p>
 
             <div className="bullets">
@@ -72,9 +72,8 @@ export default async function Home() {
             </div>
 
             <div className="stats">
-              <div className="stat"><div className="n"><CountUp end={350} suffix="+" /></div><div className="l">Attendees · PitchTank SF</div></div>
-              <div className="stat"><div className="n"><CountUp end={64} /></div><div className="l">Luma events attended</div></div>
-              <div className="stat"><div className="n"><CountUp end={300} suffix="+" /></div><div className="l">Builders · Village Hacks</div></div>
+              <div className="stat"><div className="n"><CountUp end={350} suffix="+" /></div><div className="l">Attendees · largest gathering</div></div>
+              <div className="stat"><div className="n"><CountUp end={60} suffix="+" /></div><div className="l">Luma events attended</div></div>
             </div>
           </div>
         </section>

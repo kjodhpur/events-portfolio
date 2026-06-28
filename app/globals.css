@@ -64,7 +64,7 @@ code{font-family:var(--mono);font-size:.92em;background:var(--paper-2);padding:1
 @media(max-width:600px){.checklist{grid-template-columns:1fr}.bullets{padding-left:0}.hero .lede{padding-left:0}.hero h1{padding-left:12px}}
 
 /* stats */
-.stats{margin-top:34px;display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);background:var(--card)}
+.stats{margin-top:34px;display:grid;grid-template-columns:repeat(2,1fr);border:1px solid var(--line);background:var(--card)}
 .stat{padding:16px 18px;border-right:1px solid var(--line)}
 .stat:last-child{border-right:none}
 .stat .n{font-weight:700;font-size:22px;line-height:1;letter-spacing:-.01em}
@@ -132,10 +132,11 @@ code{font-family:var(--mono);font-size:.92em;background:var(--paper-2);padding:1
 .note-group.good .note-head{color:var(--emerald)}
 .note-group.tune .note-head{color:var(--signal)}
 .note-group ul{list-style:none}
-.note-group li{display:flex;gap:10px;font-size:13.5px;line-height:1.65;color:var(--body);margin-bottom:7px;max-width:76ch}
-.note-group li::before{flex:0 0 auto;font-weight:700}
-.note-group.good li::before{content:"+";color:var(--emerald)}
-.note-group.tune li::before{content:"\25B3";color:var(--signal)}
+.note-group li{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;line-height:1.65;color:var(--body);margin-bottom:9px;max-width:76ch}
+.curl{width:28px;height:24px;flex:0 0 auto;margin-top:1px}
+.curl path{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:2.6 2.6}
+.note-group.good .curl{color:var(--emerald)}
+.note-group.tune .curl{color:var(--signal)}
 @media(max-width:760px){.event{grid-template-columns:1fr;gap:16px}.meta{padding-right:0;display:flex;flex-wrap:wrap;gap:6px 18px}.meta .pass{width:100%}.ebody h3{padding-left:11px}}
 
 /* ---------- the full circuit list ---------- */

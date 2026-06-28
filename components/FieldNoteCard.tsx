@@ -23,6 +23,14 @@ function MediaTile({ m, title }: { m: Media; title: string }) {
   return null;
 }
 
+function Curl() {
+  return (
+    <svg className="curl" viewBox="0 0 28 24" aria-hidden="true">
+      <path d="M24 22 C24 9 15 5 6 6 M6 6 l5 -3 M6 6 l3 5" />
+    </svg>
+  );
+}
+
 export function FieldNoteCard({ event, index }: { event: EventItem; index: number }) {
   const media = [...(event.event_media ?? [])].sort((a, b) => a.sort - b.sort);
   const links = [...(event.event_links ?? [])].sort((a, b) => a.sort - b.sort);
@@ -56,13 +64,13 @@ export function FieldNoteCard({ event, index }: { event: EventItem; index: numbe
             {highlights.length > 0 && (
               <div className="note-group good">
                 <div className="note-head">What worked</div>
-                <ul>{highlights.map((n) => <li key={n.id}>{n.body}</li>)}</ul>
+                <ul>{highlights.map((n) => <li key={n.id}><Curl /><span>{n.body}</span></li>)}</ul>
               </div>
             )}
             {improvements.length > 0 && (
               <div className="note-group tune">
                 <div className="note-head">What I&apos;d tune</div>
-                <ul>{improvements.map((n) => <li key={n.id}>{n.body}</li>)}</ul>
+                <ul>{improvements.map((n) => <li key={n.id}><Curl /><span>{n.body}</span></li>)}</ul>
               </div>
             )}
           </div>

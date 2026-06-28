@@ -5,7 +5,6 @@ export function SiteFooter() {
         <div className="grid">
           <h4>Let&apos;s put<br />on a show!</h4>
           <div className="contact">
-            <div className="mono" style={{ color: "var(--muted)", fontSize: 11, letterSpacing: ".1em" }}>CONTACT</div>
             <a href="mailto:kjodhpurkar@gmail.com">kjodhpurkar@gmail.com</a><br />
             <a href="tel:+15715999810">571-599-9810</a><br />
             San Francisco, CA
