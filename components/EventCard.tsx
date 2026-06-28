@@ -9,14 +9,14 @@ function fmtDate(d: string | null) {
 function VideoBlock({ m }: { m: Media }) {
   if (m.embed_url) {
     return (
-      <div className="frame">
+      <div className="frame media">
         <iframe src={m.embed_url} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
       </div>
     );
   }
   if (m.public_url) {
     return (
-      <div className="frame">
+      <div className="frame media">
         <video src={m.public_url} controls playsInline preload="metadata" />
       </div>
     );
@@ -46,10 +46,14 @@ export function EventCard({ event, index }: { event: EventItem; index: number })
       <div className="ebody">
         <h3>{event.title}</h3>
 
-        {videos.map((v) => <VideoBlock key={v.id} m={v} />)}
+        {videos.length > 0 && (
+          <div className={videos.length > 1 ? "vgrid" : undefined}>
+            {videos.map((v) => <VideoBlock key={v.id} m={v} />)}
+          </div>
+        )}
 
         {hero && (
-          <div className="frame">
+          <div className="frame media">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={hero.public_url!} alt={event.title} />
           </div>

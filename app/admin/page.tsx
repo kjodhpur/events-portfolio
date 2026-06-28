@@ -6,6 +6,34 @@ import type { EventItem } from "@/lib/types";
 
 const supabase = createClient();
 
+// Accepts a YouTube/Vimeo link (any format) or a direct video file URL.
+// Returns the field to store: embed_url for platforms, public_url for direct files.
+function normalizeVideoUrl(input: string): { embed_url?: string; public_url?: string } | null {
+  const raw = input.trim();
+  if (!raw) return null;
+  let u: URL;
+  try { u = new URL(raw); } catch { return null; }
+  const host = u.hostname.replace(/^www\./, "");
+  if (host === "youtu.be") {
+    const id = u.pathname.slice(1);
+    if (id) return { embed_url: `https://www.youtube.com/embed/${id}` };
+  }
+  if (host.endsWith("youtube.com")) {
+    let id: string | null | undefined = u.searchParams.get("v");
+    const parts = u.pathname.split("/").filter(Boolean);
+    if (!id && (parts[0] === "shorts" || parts[0] === "embed")) id = parts[1];
+    if (id) return { embed_url: `https://www.youtube.com/embed/${id}` };
+  }
+  if (host === "vimeo.com") {
+    const id = u.pathname.split("/").filter(Boolean)[0];
+    if (id && /^\d+$/.test(id)) return { embed_url: `https://player.vimeo.com/video/${id}` };
+  }
+  if (host === "player.vimeo.com") return { embed_url: raw };
+  if (/\.(mp4|webm|ogg|mov|m4v)(\?.*)?$/i.test(u.pathname)) return { public_url: raw };
+  if (u.pathname.includes("/embed/")) return { embed_url: raw };
+  return { public_url: raw };
+}
+
 export default function AdminPage() {
   const [authed, setAuthed] = useState<boolean | null>(null);
   const [email, setEmail] = useState("");
@@ -132,7 +160,7 @@ function NewEvent({ onSaved }: { onSaved: () => void }) {
 /* ---------------- Existing event row (media, links, delete) ---------------- */
 function EventRow({ ev, onChange }: { ev: EventItem; onChange: () => void }) {
   const [busy, setBusy] = useState("");
-  const [embed, setEmbed] = useState("");
+  const [videoUrl, setVideoUrl] = useState("");
   const [link, setLink] = useState({ label: "", url: "" });
 
   async function uploadFiles(files: FileList | null, kind: "photo" | "video") {
@@ -149,11 +177,18 @@ function EventRow({ ev, onChange }: { ev: EventItem; onChange: () => void }) {
     onChange();
   }
 
-  async function addEmbed() {
-    if (!embed) return;
+  async function addVideoUrl() {
+    const parsed = normalizeVideoUrl(videoUrl);
+    if (!parsed) { setBusy("Couldn't read that URL"); return; }
     setBusy("Adding video…");
-    await supabase.from("event_media").insert({ event_id: ev.id, kind: "video", embed_url: embed, sort: Date.now() % 100000 });
-    setEmbed(""); setBusy(""); onChange();
+    await supabase.from("event_media").insert({
+      event_id: ev.id,
+      kind: "video",
+      embed_url: parsed.embed_url ?? null,
+      public_url: parsed.public_url ?? null,
+      sort: Date.now() % 100000,
+    });
+    setVideoUrl(""); setBusy(""); onChange();
   }
 
   async function addLink() {
@@ -213,11 +248,14 @@ function EventRow({ ev, onChange }: { ev: EventItem; onChange: () => void }) {
       <label>Add video file (keep clips short — see README on size limits)</label>
       <input type="file" accept="video/*" onChange={(e) => uploadFiles(e.target.files, "video")} />
 
-      <label>…or paste a YouTube/Vimeo embed URL (recommended for long video)</label>
+      <label>…or paste a video link — YouTube, Vimeo, or a direct .mp4 URL (best for large videos)</label>
       <div style={{ display: "flex", gap: 8 }}>
-        <input value={embed} onChange={(e) => setEmbed(e.target.value)} placeholder="https://www.youtube.com/embed/VIDEO_ID" />
-        <button className="btn ghost" onClick={addEmbed}>Add</button>
+        <input value={videoUrl} onChange={(e) => setVideoUrl(e.target.value)} placeholder="https://youtu.be/…  or  https://…/clip.mp4" />
+        <button className="btn ghost" onClick={addVideoUrl}>Add</button>
       </div>
+      <p className="muted" style={{ marginTop: 6 }}>
+        Direct file uploads above go to Supabase (~50MB/file cap). For larger videos, upload to YouTube/Vimeo (unlisted works) or any host and paste the link here — no size limit.
+      </p>
 
       <label>Add article / link</label>
       <div className="row2">

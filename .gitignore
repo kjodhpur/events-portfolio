@@ -6,3 +6,12 @@ node_modules
 *.log
 
 .vercel
+
+# raw camera media — convert to web formats in public/media/ instead
+*.heic
+*.HEIC
+*.heif
+*.mov
+*.MOV
+*.mkv
+*.avi
