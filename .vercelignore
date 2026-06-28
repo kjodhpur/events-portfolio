@@ -1,2 +1,13 @@
-# Large local-only design reference — keep it out of deployments
+# NOTE: when this file exists, Vercel ignores .gitignore — so list everything here.
+node_modules
+.next
+.git
+.vercel
 PlanetScale web Sep 2025/
+events/
+*.mov
+*.MOV
+*.heic
+*.HEIC
+*.heif
+*.mkv
