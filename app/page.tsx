@@ -2,6 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { EventCard } from "@/components/EventCard";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
+import { CountUp } from "@/components/CountUp";
 import type { EventItem } from "@/lib/types";
 
 export const revalidate = 0; // always fresh
@@ -34,6 +35,8 @@ const PRINCIPLES = [
 ];
 
 const BACKGROUND: { k: string; v: React.ReactNode }[] = [
+  { k: "Advisor", v: <>Strategic advisor to <b><a href="https://devnovate.co" target="_blank" rel="noopener noreferrer">Devnovate</a></b> (founder Aviral Bhardwaj) — 1M+ developers, 65+ hackathons, 25+ partners, 5,000+ projects.</> },
+  { k: "Community", v: <>Plugged into <b>HackWithIndia</b> — India&apos;s largest hackathon community (100k+ students, 5k+ universities) — and <b>HackWithUSA</b>.</> },
   { k: "Product", v: <>AI Product Owner at <b>Deloitte</b> — Google&apos;s Rapid Innovation &ldquo;Genie&rdquo; project.</> },
   { k: "Public sector", v: <>IT PMO on a DoD contract · active <b>Secret clearance</b>.</> },
   { k: "Certified", v: <><b>CSPO</b> (Product Owner) &amp; <b>CSM</b> (ScrumMaster).</> },
@@ -81,9 +84,9 @@ export default async function Home() {
             </div>
 
             <div className="stats">
-              <div className="stat"><div className="n">350+</div><div className="l">Largest event hosted</div></div>
-              <div className="stat"><div className="n">50+</div><div className="l">SF events in a month</div></div>
-              <div className="stat"><div className="n">Dozens</div><div className="l">Vendors &amp; partners run</div></div>
+              <div className="stat"><div className="n"><CountUp end={350} suffix="+" /></div><div className="l">Attendees · PitchTank SF</div></div>
+              <div className="stat"><div className="n"><CountUp end={64} /></div><div className="l">Luma events attended</div></div>
+              <div className="stat"><div className="n"><CountUp end={300} suffix="+" /></div><div className="l">Builders · Village Hacks</div></div>
             </div>
           </div>
         </section>
