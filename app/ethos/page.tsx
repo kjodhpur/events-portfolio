@@ -2,7 +2,7 @@ import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata = {
-  title: "Approach — Kanha Jodhpurkar",
+  title: "Ethos — Kanha Jodhpurkar",
   description: "How I think about events — and why I love the parts most people avoid.",
 };
 
@@ -13,15 +13,15 @@ const PRINCIPLES = [
   "I'm here to grow in event & community marketing — not pass through it.",
 ];
 
-export default function Approach() {
+export default function Ethos() {
   return (
     <>
-      <SiteNav active="approach" />
+      <SiteNav active="ethos" />
 
       <main id="top">
         <section className="hero">
           <div className="wrap">
-            <div className="kicker">Approach — how I run a room</div>
+            <div className="kicker">Ethos — how I run a room</div>
             <h1>
               I love the parts of an event <em>most people avoid</em>.
             </h1>

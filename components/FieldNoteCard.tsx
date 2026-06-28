@@ -23,10 +23,20 @@ function MediaTile({ m, title }: { m: Media; title: string }) {
   return null;
 }
 
-function Curl() {
+// Straight (direct) arrow up toward the media — for "what worked".
+function DirectArrow() {
   return (
-    <svg className="curl" viewBox="0 0 28 24" aria-hidden="true">
-      <path d="M24 22 C24 9 15 5 6 6 M6 6 l5 -3 M6 6 l3 5" />
+    <svg className="arr" viewBox="0 0 30 24" aria-hidden="true">
+      <path d="M15 22 L15 6 M15 6 l-4.5 4.5 M15 6 l4.5 4.5" />
+    </svg>
+  );
+}
+
+// Curvy dashed arrow up toward the media — for "what I'd tune".
+function CurvyArrow() {
+  return (
+    <svg className="arr" viewBox="0 0 30 24" aria-hidden="true">
+      <path d="M24 22 C24 11 13 8 7 6 M7 6 l5 -1.5 M7 6 l-1.5 5" />
     </svg>
   );
 }
@@ -64,13 +74,17 @@ export function FieldNoteCard({ event, index }: { event: EventItem; index: numbe
             {highlights.length > 0 && (
               <div className="note-group good">
                 <div className="note-head">What worked</div>
-                <ul>{highlights.map((n) => <li key={n.id}><Curl /><span>{n.body}</span></li>)}</ul>
+                <ul>{highlights.map((n) => (
+                  <li key={n.id}><span className="mk">+</span><span className="txt">{n.body}</span><DirectArrow /></li>
+                ))}</ul>
               </div>
             )}
             {improvements.length > 0 && (
               <div className="note-group tune">
                 <div className="note-head">What I&apos;d tune</div>
-                <ul>{improvements.map((n) => <li key={n.id}><Curl /><span>{n.body}</span></li>)}</ul>
+                <ul>{improvements.map((n) => (
+                  <li key={n.id}><span className="mk">&#9651;</span><span className="txt">{n.body}</span><CurvyArrow /></li>
+                ))}</ul>
               </div>
             )}
           </div>

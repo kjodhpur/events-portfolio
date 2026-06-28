@@ -105,9 +105,9 @@ code{font-family:var(--mono);font-size:.92em;background:var(--paper-2);padding:1
 .meta .role{margin-top:12px;display:inline-block;background:var(--emerald);color:#fff;padding:3px 9px;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase}
 .meta .scope{margin:8px 0 2px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--emerald);font-weight:700}
 .media-strip{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 16px}
-.media-strip video,.media-strip img{height:230px;width:auto;max-width:100%;display:block;border:1px solid var(--line);border-radius:3px;background:#000}
-.media-strip iframe{height:230px;width:409px;max-width:100%;border:1px solid var(--line);border-radius:3px;display:block}
-@media(max-width:600px){.media-strip video,.media-strip img,.media-strip iframe{height:170px}}
+.media-strip video,.media-strip img{height:200px;width:auto;max-width:100%;display:block;border:1px solid var(--line);border-radius:3px;background:#000}
+.media-strip iframe{height:200px;width:356px;max-width:100%;border:1px solid var(--line);border-radius:3px;display:block}
+@media(max-width:600px){.media-strip video,.media-strip img,.media-strip iframe{height:160px}}
 
 .ebody h3{font-weight:700;font-size:clamp(16px,2vw,20px);line-height:1.25;letter-spacing:-.01em;margin-bottom:14px;border-left:3px solid var(--emerald);padding-left:13px}
 .frame{position:relative;width:100%;aspect-ratio:16/9;background:var(--paper-2);border:1px solid var(--line);overflow:hidden;margin-bottom:14px}
@@ -132,11 +132,16 @@ code{font-family:var(--mono);font-size:.92em;background:var(--paper-2);padding:1
 .note-group.good .note-head{color:var(--emerald)}
 .note-group.tune .note-head{color:var(--signal)}
 .note-group ul{list-style:none}
-.note-group li{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;line-height:1.65;color:var(--body);margin-bottom:9px;max-width:76ch}
-.curl{width:28px;height:24px;flex:0 0 auto;margin-top:1px}
-.curl path{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:2.6 2.6}
-.note-group.good .curl{color:var(--emerald)}
-.note-group.tune .curl{color:var(--signal)}
+.note-group li{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;line-height:1.65;color:var(--body);margin-bottom:9px;max-width:92ch}
+.note-group .mk{flex:0 0 auto;font-weight:700}
+.note-group.good .mk{color:var(--emerald)}
+.note-group.tune .mk{color:var(--signal)}
+.note-group .txt{flex:1}
+.note-group .arr{flex:0 0 auto;width:30px;height:22px;margin-top:1px}
+.note-group .arr path{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.note-group.good .arr{color:var(--emerald)}
+.note-group.tune .arr{color:var(--signal)}
+.note-group.tune .arr path{stroke-dasharray:2.5 2.5}
 @media(max-width:760px){.event{grid-template-columns:1fr;gap:16px}.meta{padding-right:0;display:flex;flex-wrap:wrap;gap:6px 18px}.meta .pass{width:100%}.ebody h3{padding-left:11px}}
 
 /* ---------- the full circuit list ---------- */
