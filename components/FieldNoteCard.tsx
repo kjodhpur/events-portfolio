@@ -15,7 +15,6 @@ export function FieldNoteCard({ event, index }: { event: EventItem; index: numbe
         <div className="pass">FIELD NOTE {pad(index)}</div>
         {event.venue && <div className="row"><span>Where</span><span>{event.venue}</span></div>}
         {year && <div className="row"><span>When</span><span>{year}</span></div>}
-        <span className="role">Attended</span>
       </div>
       <TeardownBody event={event} />
     </article>

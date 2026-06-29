@@ -8,14 +8,11 @@ import type { EventItem } from "@/lib/types";
 export const revalidate = 0; // always fresh
 
 const BACKBONE = [
-  "Run-of-show & planning docs",
-  "Venue sourcing & vendor management",
-  "Catering, rentals & entertainment",
-  "Budgets, invoices & contracts",
-  "Registration, RSVPs & guest lists",
-  "On-site setup & attendee experience",
-  "Swag, merch & event assets",
-  "Breakdown & load-out",
+  "Run-of-show & timelines",
+  "Venue, vendors & catering",
+  "Registration & guest lists",
+  "Budgets & invoices",
+  "On-site run & breakdown",
 ];
 
 const GROUND: { name: string; logo: string | null; url: string }[] = [
@@ -61,15 +58,15 @@ export default async function Home() {
             </h1>
             <p className="lede">
               I&apos;m <b>Kanha Jodhpurkar</b>. I run in-person events for <b>developers, founders, and
-              engineering leaders</b>, executive dinners, hackathons, conferences, and meetups. I keep the
-              run-of-show tight, source the venue and vendors, own registration and the guest list, send
-              everyone home happy, and I&apos;m still the one there for the 2am breakdown. A few I&apos;ve run
-              are <a href="#work">below</a>, plus <a href="/field-notes">field notes</a> on the 60+ I&apos;ve
-              turned up to.
+              engineering leaders</b>, from intimate executive dinners to 300-person hackathons. I&apos;m not a
+              decade-deep events pro, I&apos;m someone genuinely obsessed with the behind-the-scenes work, because
+              the quiet prep is what the room actually feels by the end of the night. A few I&apos;ve run are{" "}
+              <a href="#work">below</a>, plus <a href="/field-notes">field notes</a> on the 60+ I&apos;ve turned
+              up to.
             </p>
 
             <div className="bullets">
-              <div className="bl-head">The operational backbone, the part I actually enjoy</div>
+              <div className="bl-head">The behind-the-scenes work I love</div>
               <ul className="checklist">
                 {BACKBONE.map((b) => <li key={b}>{b}</li>)}
               </ul>
@@ -81,7 +78,8 @@ export default async function Home() {
             </div>
 
             <p className="hero-close">
-              Exactly the in-person community a <b>developer-first database company</b> is built on.
+              I&apos;ll own every piece with real pride, build the workflows that make the next one run tighter,
+              and keep learning the parts I haven&apos;t touched yet.
             </p>
           </div>
         </section>
@@ -140,6 +138,19 @@ export default async function Home() {
                 </li>
               ))}
             </ul>
+          </div>
+        </section>
+
+        {/* why planetscale */}
+        <section className="section" id="why">
+          <div className="wrap">
+            <div className="eyebrow">Why PlanetScale, and why long-term</div>
+            <p className="copy">
+              PlanetScale serves the exact community I already build for, developers and founders, and it runs the
+              kind of small, high-trust team I want to grow inside of. The family feel, the way the environment
+              pushes everyone to do their best work, and the values it&apos;s built on are why I&apos;d want to
+              stay and get genuinely great at this in one place, not pass through it.
+            </p>
           </div>
         </section>
       </main>
