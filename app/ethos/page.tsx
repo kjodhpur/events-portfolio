@@ -38,14 +38,6 @@ export default function Ethos() {
               premiere. An early sign I&apos;ll happily do the unglamorous, end-to-end work, and that hasn&apos;t
               changed since.
             </p>
-
-            <div className="bl-head" style={{ marginTop: 30 }}>Why PlanetScale, and why long-term</div>
-            <p className="copy" style={{ marginTop: 10 }}>
-              PlanetScale serves the exact community I already build for, developers and founders, and it runs the
-              kind of small, high-trust team I want to grow inside of. The family feel, the way the environment
-              pushes everyone to do their best work, and the values it&apos;s built on are why I&apos;d want to
-              stay and get genuinely great at this in one place, not pass through it.
-            </p>
           </div>
         </section>
 
