@@ -1,4 +1,4 @@
-// The full SF circuit: every Luma event attended this summer.
+// The full SF circuit: every Luma event attended in the last two months.
 // Curated from the live Luma pages (title + concise host).
 export type CircuitEvent = { title: string; host: string; url: string };
 

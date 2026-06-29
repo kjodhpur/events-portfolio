@@ -4,7 +4,7 @@ import { CIRCUIT } from "@/lib/circuit";
 
 export const metadata = {
   title: "The Circuit, Kanha Jodhpurkar",
-  description: "Every Luma event I showed up to across the SF circuit this summer.",
+  description: "Every Luma event I showed up to across the SF circuit in the last two months.",
 };
 
 export default function Circuit() {
@@ -17,10 +17,10 @@ export default function Circuit() {
           <div className="wrap">
             <div className="kicker">The Circuit, every room I got to</div>
             <h1>
-              I showed up to <em>60+ events</em> in a single summer.
+              I showed up to <em>60+ events</em> in the last two months.
             </h1>
             <p className="lede">
-              Every event I could get to this summer across the SF <b>developer &amp; AI scene</b>, hackathons, demo
+              Every event I could get to in the last two months across the SF <b>developer &amp; AI scene</b>, hackathons, demo
               days, founder dinners, launch nights, watch parties, all tracked through <b>Luma</b>, the same
               registration platform I run my own events on. You only really learn this stuff by being in the room,
               so here&apos;s the full count.
@@ -32,7 +32,7 @@ export default function Circuit() {
           <div className="wrap">
             <div className="sec-head">
               <h2>The full circuit</h2>
-              <span className="count">/ {CIRCUIT.length} events, one summer</span>
+              <span className="count">/ {CIRCUIT.length} events, two months</span>
             </div>
             <ol className="circuit">
               {CIRCUIT.map((e) => (
