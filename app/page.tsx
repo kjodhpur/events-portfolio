@@ -51,36 +51,43 @@ export default async function Home() {
       <main id="top">
         {/* hero */}
         <section className="hero">
-          <div className="wrap">
-            <div className="kicker">Field Marketing &amp; Event Coordination · San Francisco</div>
-            <h1>
-              I run <em>in-person events</em> end to end, from the first vendor call to the final breakdown.
-            </h1>
-            <p className="lede">
-              I&apos;m <b>Kanha Jodhpurkar</b>. I run in-person events for <b>developers, founders, and
-              engineering leaders</b>, from intimate executive dinners to 300-person hackathons. I&apos;m not a
-              decade-deep events pro, I&apos;m someone genuinely obsessed with the behind-the-scenes work, because
-              the quiet prep is what the room actually feels by the end of the night. A few I&apos;ve run are{" "}
-              <a href="#work">below</a>, plus <a href="/field-notes">field notes</a> on the 60+ I&apos;ve turned
-              up to.
-            </p>
+          <div className="wrap hero-grid">
+            <div className="hero-main">
+              <div className="kicker">Field Marketing &amp; Event Coordination · San Francisco</div>
+              <h1>
+                I run <em>in-person events</em> end to end, from the first vendor call to the final breakdown.
+              </h1>
+              <p className="lede">
+                I&apos;m <b>Kanha Jodhpurkar</b>. I run in-person events for <b>developers, founders, and
+                engineering leaders</b>, from intimate executive dinners to 300-person hackathons. I&apos;m not a
+                decade-deep events pro, I&apos;m someone genuinely obsessed with the behind-the-scenes work,
+                because the quiet prep is what the room actually feels by the end of the night. A few I&apos;ve run
+                are <a href="#work">below</a>, plus <a href="/field-notes">field notes</a> on the 60+ I&apos;ve
+                turned up to.
+              </p>
 
-            <div className="bullets">
-              <div className="bl-head">The behind-the-scenes work I love</div>
-              <ul className="checklist" style={{ gridTemplateColumns: "1fr", maxWidth: "62ch" }}>
-                {BACKBONE.map((b) => <li key={b}>{b}</li>)}
-              </ul>
+              <div className="bullets">
+                <div className="bl-head">The behind-the-scenes work I love</div>
+                <ul className="checklist" style={{ gridTemplateColumns: "1fr", maxWidth: "62ch" }}>
+                  {BACKBONE.map((b) => <li key={b}>{b}</li>)}
+                </ul>
+              </div>
+
+              <div className="stats">
+                <div className="stat"><div className="n"><CountUp end={350} suffix="+" /></div><div className="l">Attendees · largest gathering</div></div>
+                <div className="stat"><div className="n"><CountUp end={60} suffix="+" /></div><div className="l">Luma events attended</div></div>
+              </div>
+
+              <p className="hero-close">
+                I&apos;ll own every piece with real pride, build the workflows that make the next one run tighter,
+                and keep learning the parts I haven&apos;t touched yet.
+              </p>
             </div>
 
-            <div className="stats">
-              <div className="stat"><div className="n"><CountUp end={350} suffix="+" /></div><div className="l">Attendees · largest gathering</div></div>
-              <div className="stat"><div className="n"><CountUp end={60} suffix="+" /></div><div className="l">Luma events attended</div></div>
-            </div>
-
-            <p className="hero-close">
-              I&apos;ll own every piece with real pride, build the workflows that make the next one run tighter,
-              and keep learning the parts I haven&apos;t touched yet.
-            </p>
+            <aside className="hero-aside">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="hero-img" src="/media/kanha-endorsement.jpg" alt="A person holding a legal pad that reads: Kanha is the man for the job, here's why" />
+            </aside>
           </div>
         </section>
 
