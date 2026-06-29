@@ -15,7 +15,7 @@ export function SiteNav({ active }: { active?: "home" | "field-notes" | "circuit
         <div className="wrap">
           <a className="brand" href="/">
             <span className="mark" aria-hidden="true" />
-            <b>Kanha Jodhpurkar</b> <span>/ Field Marketing &amp; Coordination</span>
+            <b>Kanha Jodhpurkar</b>
           </a>
           <nav className="nav-links">
             <a className="hide-sm" href="/#work">Work</a>

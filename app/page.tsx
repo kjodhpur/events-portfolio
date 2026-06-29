@@ -8,11 +8,11 @@ import type { EventItem } from "@/lib/types";
 export const revalidate = 0; // always fresh
 
 const BACKBONE = [
-  "Run-of-show & timelines",
-  "Venue, vendors & catering",
-  "Registration & guest lists",
-  "Budgets & invoices",
-  "On-site run & breakdown",
+  "Walking Target for the supplies and decor that'll actually look right in the room",
+  "Figuring out how to stretch the same budget further without it feeling cheap",
+  "Taping down every cable so nobody trips in the middle of a talk",
+  "Keeping the check-in line moving so the night starts on the right foot",
+  "Being the last one there, stacking chairs after everyone's gone home",
 ];
 
 const GROUND: { name: string; logo: string | null; url: string }[] = [
@@ -67,7 +67,7 @@ export default async function Home() {
 
             <div className="bullets">
               <div className="bl-head">The behind-the-scenes work I love</div>
-              <ul className="checklist">
+              <ul className="checklist" style={{ gridTemplateColumns: "1fr", maxWidth: "62ch" }}>
                 {BACKBONE.map((b) => <li key={b}>{b}</li>)}
               </ul>
             </div>
