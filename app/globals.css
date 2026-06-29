@@ -126,6 +126,7 @@ code{font-family:var(--mono);font-size:.92em;background:var(--paper-2);padding:1
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:4px 0 12px}
 .gallery .frame{aspect-ratio:1;margin-bottom:0}
 .links{font-size:12.5px;line-height:1.9;margin-top:4px}
+.meta .links{margin-top:10px;font-size:12px}
 .links a{color:var(--link);text-decoration:none}
 .links a:hover{text-decoration:underline}
 /* field-note highlights / improvements */

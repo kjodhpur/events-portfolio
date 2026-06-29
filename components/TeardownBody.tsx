@@ -20,7 +20,6 @@ function MediaInner({ m, title }: { m: Media; title: string }) {
 
 export function TeardownBody({ event }: { event: EventItem }) {
   const media = [...(event.event_media ?? [])].sort((a, b) => a.sort - b.sort);
-  const links = [...(event.event_links ?? [])].sort((a, b) => a.sort - b.sort);
   const notes = [...(event.event_notes ?? [])].sort((a, b) => a.sort - b.sort);
   const highlights = notes.filter((n) => n.kind === "highlight");
   const improvements = notes.filter((n) => n.kind === "improvement");
@@ -138,14 +137,6 @@ export function TeardownBody({ event }: { event: EventItem }) {
             <path key={i} className={a.cls} d={a.d} markerEnd={a.cls === "good" ? "url(#ah-good)" : "url(#ah-tune)"} />
           ))}
         </svg>
-      )}
-
-      {links.length > 0 && (
-        <div className="links">
-          {links.map((l) => (
-            <div key={l.id}>→ <a href={l.url} target="_blank" rel="noopener noreferrer">{l.label}</a></div>
-          ))}
-        </div>
       )}
     </div>
   );
