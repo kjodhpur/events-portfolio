@@ -41,6 +41,50 @@ export default function Ethos() {
           </div>
         </section>
 
+        <section className="section" id="run-room">
+          <div className="wrap">
+            <div className="eyebrow">How I&apos;d run the room</div>
+            <p className="copy" style={{ marginBottom: 4 }}>
+              A single <b>run-of-show</b> routes the whole night, fanning out across every workstream, from venue
+              and vendors to registration and breakdown, so the room lands as one clean experience for every
+              attendee.
+            </p>
+            <div className="rd-tree">
+              <ul>
+                <li>
+                  <div className="rd-box rd-gate">Run-of-Show</div>
+                  <ul>
+                    <li>
+                      <div className="rd-box rd-primary">Event Execution</div>
+                      <ul>
+                        <li><div className="rd-box rd-replica">Venue &amp; vendors</div></li>
+                        <li><div className="rd-box rd-replica">Catering</div></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <div className="rd-box rd-primary">Attendee Experience</div>
+                      <ul>
+                        <li><div className="rd-box rd-replica">Registration</div></li>
+                        <li><div className="rd-box rd-replica">RSVPs &amp; follow-up</div></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <div className="rd-box rd-primary">Logistics &amp; Swag</div>
+                      <ul>
+                        <li><div className="rd-box rd-replica">Swag &amp; merch</div></li>
+                        <li><div className="rd-box rd-replica">Load-out</div></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div className="rd-cap">
+              Cross-functional by design: sponsors, speakers, vendors, and the on-site team all routing through one plan.
+            </div>
+          </div>
+        </section>
+
         <section className="section" id="background">
           <div className="wrap">
             <div className="eyebrow">Community, reach &amp; toolkit</div>

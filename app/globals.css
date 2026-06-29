@@ -180,6 +180,24 @@ code{font-family:var(--mono);font-size:.92em;background:var(--paper-2);padding:1
 .facts li a:hover{text-decoration:underline}
 @media(max-width:600px){.facts li{grid-template-columns:1fr;gap:4px}}
 
+/* ---------- "how I'd run the room" diagram ---------- */
+.rd-tree{text-align:center;overflow-x:auto;padding:10px 0 2px;margin:24px 0 18px}
+.rd-tree ul{padding-top:22px;position:relative;white-space:nowrap;margin:0;list-style:none}
+.rd-tree li{display:inline-block;vertical-align:top;text-align:center;list-style:none;position:relative;padding:22px 4px 0;white-space:normal}
+.rd-tree li::before,.rd-tree li::after{content:'';position:absolute;top:0;right:50%;border-top:1px dashed var(--line);width:50%;height:22px}
+.rd-tree li::after{right:auto;left:50%;border-left:1px dashed var(--line)}
+.rd-tree li:only-child::after,.rd-tree li:only-child::before{display:none}
+.rd-tree li:only-child{padding-top:0}
+.rd-tree li:first-child::before,.rd-tree li:last-child::after{border:0 none}
+.rd-tree li:last-child::before{border-right:1px dashed var(--line)}
+.rd-tree ul ul::before{content:'';position:absolute;top:0;left:50%;border-left:1px dashed var(--line);width:0;height:22px}
+.rd-box{display:inline-block;border:1px solid var(--line);background:var(--card);padding:9px 12px;font-family:var(--mono);font-size:12px;color:var(--ink);border-radius:3px;position:relative}
+.rd-gate{background:repeating-linear-gradient(45deg,rgba(11,110,79,.10),rgba(11,110,79,.10) 2px,transparent 2px,transparent 5px),var(--card);font-weight:700;letter-spacing:.05em;padding:11px 26px}
+.rd-primary{border:1.5px solid var(--emerald);font-weight:600}
+.rd-replica{color:var(--body);font-size:11px}
+.rd-primary::before,.rd-replica::before{content:"\25BE";position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:10px;color:var(--muted);line-height:1}
+.rd-cap{border-left:3px solid var(--emerald);padding:2px 0 2px 16px;max-width:74ch;font-size:13px;line-height:1.6;color:var(--body)}
+
 /* ---------- footer ---------- */
 footer{border-top:1px solid var(--line);padding:44px 0 56px}
 footer .grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:22px;align-items:flex-end}
