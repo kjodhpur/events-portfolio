@@ -3,7 +3,6 @@ import { EventCard } from "@/components/EventCard";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { CountUp } from "@/components/CountUp";
-import { OfficeTrashGame } from "@/components/OfficeTrashGame";
 import type { EventItem } from "@/lib/types";
 
 export const revalidate = 0; // always fresh
@@ -55,42 +54,35 @@ export default async function Home() {
       <main id="top">
         {/* hero */}
         <section className="hero">
-          <div className="wrap hero-grid">
-            <div className="hero-main">
-              <div className="kicker">Field Marketing &amp; Event Coordination · San Francisco</div>
-              <h1>
-                I run <em>in-person events</em> end to end, from the first vendor call to the final breakdown.
-              </h1>
-              <p className="lede">
-                I&apos;m <b>Kanha Jodhpurkar</b>. I run in-person events for <b>developers, founders, and
-                engineering leaders</b>, executive dinners, hackathons, conferences, and meetups. I keep the
-                run-of-show tight, source the venue and vendors, own registration and the guest list, send
-                everyone home happy, and I&apos;m still the one there for the 2am breakdown. A few I&apos;ve run
-                are <a href="#work">below</a>, plus <a href="/field-notes">field notes</a> on the 60+ I&apos;ve
-                turned up to.
-              </p>
+          <div className="wrap">
+            <div className="kicker">Field Marketing &amp; Event Coordination · San Francisco</div>
+            <h1>
+              I run <em>in-person events</em> end to end, from the first vendor call to the final breakdown.
+            </h1>
+            <p className="lede">
+              I&apos;m <b>Kanha Jodhpurkar</b>. I run in-person events for <b>developers, founders, and
+              engineering leaders</b>, executive dinners, hackathons, conferences, and meetups. I keep the
+              run-of-show tight, source the venue and vendors, own registration and the guest list, send
+              everyone home happy, and I&apos;m still the one there for the 2am breakdown. A few I&apos;ve run
+              are <a href="#work">below</a>, plus <a href="/field-notes">field notes</a> on the 60+ I&apos;ve
+              turned up to.
+            </p>
 
-              <div className="bullets">
-                <div className="bl-head">The operational backbone, the part I actually enjoy</div>
-                <ul className="checklist">
-                  {BACKBONE.map((b) => <li key={b}>{b}</li>)}
-                </ul>
-              </div>
-
-              <div className="stats">
-                <div className="stat"><div className="n"><CountUp end={350} suffix="+" /></div><div className="l">Attendees · largest gathering</div></div>
-                <div className="stat"><div className="n"><CountUp end={60} suffix="+" /></div><div className="l">Luma events attended</div></div>
-              </div>
-
-              <p className="hero-close">
-                Exactly the in-person community a <b>developer-first database company</b> is built on.
-              </p>
+            <div className="bullets">
+              <div className="bl-head">The operational backbone, the part I actually enjoy</div>
+              <ul className="checklist">
+                {BACKBONE.map((b) => <li key={b}>{b}</li>)}
+              </ul>
             </div>
 
-            <aside className="hero-aside">
-              <OfficeTrashGame />
-              <div className="aside-note">Slow day at the office? Tidy up. (Yes, it&apos;s the lounge I run events in.)</div>
-            </aside>
+            <div className="stats">
+              <div className="stat"><div className="n"><CountUp end={350} suffix="+" /></div><div className="l">Attendees · largest gathering</div></div>
+              <div className="stat"><div className="n"><CountUp end={60} suffix="+" /></div><div className="l">Luma events attended</div></div>
+            </div>
+
+            <p className="hero-close">
+              Exactly the in-person community a <b>developer-first database company</b> is built on.
+            </p>
           </div>
         </section>
 

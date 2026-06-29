@@ -57,19 +57,6 @@ code{font-family:var(--mono);font-size:.92em;background:var(--paper-2);padding:1
 .hero-close{margin-top:20px;padding-left:17px;max-width:74ch;font-size:13px;line-height:1.6;color:var(--emerald);font-weight:600}
 .hero-close b{color:var(--emerald-ink)}
 
-/* hero split: intro on the left, little game on the right */
-.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:38px;align-items:start}
-.hero-main{min-width:0}
-.hero-aside{min-width:0}
-.aside-note{margin-top:10px;font-size:11px;line-height:1.5;color:var(--muted);max-width:340px}
-@media(max-width:980px){.hero-grid{grid-template-columns:1fr}.hero-aside{max-width:360px;margin-top:6px}}
-
-/* office toss game */
-.game{border:1px solid var(--line);border-radius:10px;background:var(--card);overflow:hidden}
-.game canvas{display:block;width:100%;height:auto;cursor:crosshair;touch-action:none;-webkit-user-select:none;user-select:none}
-.game .cap{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 11px;border-top:1px solid var(--line);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.game .cap b{color:var(--emerald);font-weight:700}
-
 /* asterisk bullets */
 .bullets{margin-top:28px;padding-left:17px;max-width:760px}
 .bl-head{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
