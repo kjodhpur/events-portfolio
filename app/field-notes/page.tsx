@@ -38,7 +38,7 @@ export default async function FieldNotes() {
               Across 60+ Luma events in the last two months, at a16z, Cursor, NVIDIA, Vercel, and beyond, I watched how the
               best <b>developer-first</b> companies run a room: registration flow, swag, catering, signage, seat
               spacing, the small operational details most people miss. This is the exact <b>developer and founder
-              community</b> I want to keep building events for. Below are a few teardowns, what worked and what
+              community</b> I want to build events for. Below are a few teardowns, what worked and what
               I&apos;d tune. The full run is over on <a href="/circuit">The Circuit</a>.
             </p>
           </div>

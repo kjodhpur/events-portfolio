@@ -50,11 +50,10 @@ export default async function Home() {
                 I run <em>in-person events</em> end to end, from the first vendor call to the final breakdown.
               </h1>
               <p className="lede">
-                I&apos;m <b>Kanha Jodhpurkar</b>. PlanetScale serves the exact community I already build for,{" "}
-                <b>developers, founders, and engineering leaders</b>, and runs the kind of small, high-trust team I
-                want to grow inside of. The family feel, the environment that pushes everyone to do their best
-                work, and the values it&apos;s built on are why I&apos;d want to stay and get genuinely great at
-                this in one place, not pass through it. A few I&apos;ve run are <a href="#work">below</a>, plus{" "}
+                I&apos;m <b>Kanha Jodhpurkar</b>. PlanetScale runs the kind of small, high-trust team I&apos;d want
+                to grow inside of. The family feel, the environment that pushes everyone to do their best work, and
+                the values it&apos;s built on are why I&apos;d want to stay and get genuinely great at this in one
+                place, not pass through it. A few I&apos;ve run are <a href="#work">below</a>, plus{" "}
                 <a href="/field-notes">field notes</a> on the 60+ I&apos;ve turned up to.
               </p>
 
