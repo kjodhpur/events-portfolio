@@ -47,8 +47,8 @@ export default async function FieldNotes() {
         <section className="section" id="notes" style={{ paddingTop: 44 }}>
           <div className="wrap">
             <div className="sec-head">
-              <h2>Teardowns</h2>
-              <span className="count">/ {notes.length} on record</span>
+              <h2>Teardowns — a field marketer&apos;s lens</h2>
+              <span className="count">/ {notes.length} case examples</span>
             </div>
 
             {notes.length === 0 ? (
