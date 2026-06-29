@@ -49,20 +49,6 @@ export default function Ethos() {
           </div>
         </section>
 
-        <section className="section" id="mapping">
-          <div className="wrap">
-            <div className="eyebrow">My work, mapped to the role</div>
-            <ul className="facts">
-              {MAPPING.map((m) => (
-                <li key={m.k}>
-                  <span className="k">{m.k}</span>
-                  <span>{m.v}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
         <section className="section" id="background">
           <div className="wrap">
             <div className="eyebrow">Community, reach &amp; toolkit</div>
@@ -71,6 +57,20 @@ export default function Ethos() {
                 <li key={f.k}>
                   <span className="k">{f.k}</span>
                   <span>{f.v}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className="section" id="mapping">
+          <div className="wrap">
+            <div className="eyebrow">My work, mapped to the role</div>
+            <ul className="facts">
+              {MAPPING.map((m) => (
+                <li key={m.k}>
+                  <span className="k">{m.k}</span>
+                  <span>{m.v}</span>
                 </li>
               ))}
             </ul>

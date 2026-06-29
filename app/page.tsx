@@ -11,7 +11,6 @@ const BACKBONE = [
   "Walking Target for decor that'll actually look right",
   "Stretching the same budget without it feeling cheap",
   "Taping down cables so nobody trips mid-talk",
-  "Keeping the check-in line moving",
   "Stacking the last chairs after everyone leaves",
 ];
 

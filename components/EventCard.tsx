@@ -35,6 +35,13 @@ export function EventCard({ event, index }: { event: EventItem; index: number })
         {event.scale && <div className="row"><span>Scale</span><span>{event.scale}</span></div>}
         <div className="row"><span>Year</span><span>{fmtDate(event.event_date)}</span></div>
         {event.role && <span className="role">{event.role}</span>}
+        {links.length > 0 && (
+          <div className="links">
+            {links.map((l) => (
+              <div key={l.id}>→ <a href={l.url} target="_blank" rel="noopener noreferrer">{l.label}</a></div>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="ebody">
@@ -47,14 +54,6 @@ export function EventCard({ event, index }: { event: EventItem; index: number })
         )}
 
         {event.blurb && event.blurb.split("\n").filter(Boolean).map((para, i) => <p key={i}>{para}</p>)}
-
-        {links.length > 0 && (
-          <div className="links">
-            {links.map((l) => (
-              <div key={l.id}>→ <a href={l.url} target="_blank" rel="noopener noreferrer">{l.label}</a></div>
-            ))}
-          </div>
-        )}
       </div>
     </article>
   );
