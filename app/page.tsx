@@ -7,13 +7,6 @@ import type { EventItem } from "@/lib/types";
 
 export const revalidate = 0; // always fresh
 
-const BACKBONE = [
-  "Walking Target for decor that'll actually look right",
-  "Stretching the same budget without it feeling cheap",
-  "Taping down cables so nobody trips mid-talk",
-  "Stacking the last chairs after everyone leaves",
-];
-
 const GROUND: { name: string; logo: string | null; url: string }[] = [
   { name: "ASU", logo: "/media/logos/asu.svg", url: "https://www.asu.edu" },
   { name: "Startup Village", logo: "/media/logos/startup-village.svg", url: "https://www.startupvillage.club" },
@@ -54,13 +47,6 @@ export default async function Home() {
               genuinely great at this in one place instead of passing through it. A few events I&apos;ve run are{" "}
               <a href="#work">below</a>, plus <a href="/field-notes">field notes</a> on the 60+ I&apos;ve turned up to.
             </p>
-
-            <div className="bullets">
-              <div className="bl-head">The behind-the-scenes work I love</div>
-              <ul className="checklist">
-                {BACKBONE.map((b) => <li key={b}>{b}</li>)}
-              </ul>
-            </div>
 
             <div className="stats">
               <div className="stat"><div className="n"><CountUp end={350} suffix="+" /></div><div className="l">Attendees · largest gathering</div></div>
