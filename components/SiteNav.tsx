@@ -5,7 +5,7 @@ export function SiteNav({ active }: { active?: "home" | "field-notes" | "circuit
         <div className="wrap">
           <span>
             <span className="dot">●</span>{" "}
-            Built for the developer &amp; founder community <b>PlanetScale</b> runs on, in SF and ready to coordinate.
+            Field marketing &amp; event coordinator, based in SF and ready to run the next room.
           </span>
           <a href="https://calendly.com/kjod" target="_blank" rel="noopener noreferrer">Get in touch →</a>
         </div>

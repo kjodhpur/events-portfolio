@@ -43,43 +43,34 @@ export default async function Home() {
       <main id="top">
         {/* hero */}
         <section className="hero">
-          <div className="wrap hero-grid">
-            <div className="hero-main">
-              <div className="kicker">Field Marketing &amp; Event Coordination · San Francisco</div>
-              <h1>
-                I run <em>in-person events</em> end to end, from the first vendor call to the final breakdown.
-              </h1>
-              <p className="lede">
-                I&apos;m <b>Kanha Jodhpurkar</b>. PlanetScale runs the kind of small, high-trust team I&apos;d want
-                to grow inside of. The family feel, the environment that pushes everyone to do their best work, and
-                the values it&apos;s built on are why I&apos;d want to stay and get genuinely great at this in one
-                place, not pass through it. A few I&apos;ve run are <a href="#work">below</a>, plus{" "}
-                <a href="/field-notes">field notes</a> on the 60+ I&apos;ve turned up to.
-              </p>
+          <div className="wrap">
+            <div className="kicker">Field Marketing &amp; Event Coordination · San Francisco</div>
+            <h1>
+              I run <em>in-person events</em> end to end, from the first vendor call to the final breakdown.
+            </h1>
+            <p className="lede">
+              I&apos;m <b>Kanha Jodhpurkar</b>. What I want is to grow inside a small, high-trust team, the kind
+              with a real family feel and an environment that pushes everyone to do their best work, and to get
+              genuinely great at this in one place instead of passing through it. A few events I&apos;ve run are{" "}
+              <a href="#work">below</a>, plus <a href="/field-notes">field notes</a> on the 60+ I&apos;ve turned up to.
+            </p>
 
-              <div className="bullets">
-                <div className="bl-head">The behind-the-scenes work I love</div>
-                <ul className="checklist">
-                  {BACKBONE.map((b) => <li key={b}>{b}</li>)}
-                </ul>
-              </div>
-
-              <div className="stats">
-                <div className="stat"><div className="n"><CountUp end={350} suffix="+" /></div><div className="l">Attendees · largest gathering</div></div>
-                <div className="stat"><div className="n"><CountUp end={60} suffix="+" /></div><div className="l">Luma events attended</div></div>
-              </div>
-
-              <p className="hero-close">
-                I&apos;ll own every piece with real pride, build the workflows that make the next one run tighter,
-                and keep learning the parts I haven&apos;t touched yet.
-              </p>
+            <div className="bullets">
+              <div className="bl-head">The behind-the-scenes work I love</div>
+              <ul className="checklist">
+                {BACKBONE.map((b) => <li key={b}>{b}</li>)}
+              </ul>
             </div>
 
-            <aside className="hero-aside">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="hero-img" src="/media/kanha-endorsement.jpg" alt="A person holding a legal pad that reads: Kanha is the man for the job, here's why" />
-              <div className="endorse">[endorsed by ye]</div>
-            </aside>
+            <div className="stats">
+              <div className="stat"><div className="n"><CountUp end={350} suffix="+" /></div><div className="l">Attendees · largest gathering</div></div>
+              <div className="stat"><div className="n"><CountUp end={60} suffix="+" /></div><div className="l">Luma events attended</div></div>
+            </div>
+
+            <p className="hero-close">
+              I&apos;ll own every piece with real pride, build the workflows that make the next one run tighter,
+              and keep learning the parts I haven&apos;t touched yet.
+            </p>
           </div>
         </section>
 

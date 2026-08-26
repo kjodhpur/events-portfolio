@@ -65,6 +65,5 @@ export const CIRCUIT: CircuitEvent[] = [
   { title: "The Agentic World #1", host: "Amitabh Das · Homebrew Club", url: "https://luma.com/m09eyhhh" },
   { title: "AWS Agentic AI Showcase", host: "AICamp", url: "https://luma.com/snh5clcu" },
   { title: "World Cup: USA vs Turkey Watch Party", host: "SF Societies & Social Clubs", url: "https://luma.com/sf-i68n" },
-  { title: "World Cup Happy Hour (USA vs Turkey)", host: "PlanetScale · Sam Lambert", url: "https://luma.com/14b6eom8" },
   { title: "Sonder Listening Room & Teahouse", host: "Foy, Harvin, Eunice & Leslie", url: "https://luma.com/d3sm4ld8" },
 ];

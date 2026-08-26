@@ -3,7 +3,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata = {
   title: "Ethos, Kanha Jodhpurkar",
-  description: "How I run a room, why PlanetScale, and how my work maps to the field-marketing job.",
+  description: "How I run a room, and how my work maps to the field-marketing job.",
 };
 
 const MAPPING: { k: string; v: React.ReactNode }[] = [

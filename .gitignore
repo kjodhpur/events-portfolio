@@ -17,7 +17,7 @@ node_modules
 *.avi
 
 # local design-reference screenshots — never commit or deploy
-PlanetScale web Sep 2025/
+design-reference/
 
 # raw media drop folder — convert into public/media/ instead
 events/
