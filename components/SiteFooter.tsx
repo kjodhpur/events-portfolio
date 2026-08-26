@@ -16,7 +16,7 @@ export function SiteFooter() {
             </div>
           </div>
         </div>
-        <div className="colophon">KANHA JODHPURKAR · FIELD MARKETING &amp; COORDINATION · PORTFOLIO 2026</div>
+        <div className="colophon">KANHA JODHPURKAR · FIELD MARKETING, EVENT COORDINATION &amp; VENDOR PARTNERSHIPS · PORTFOLIO 2026</div>
       </div>
     </footer>
   );

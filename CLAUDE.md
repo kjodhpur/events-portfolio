@@ -1,6 +1,6 @@
 # events-portfolio
 
-Next.js 14 (App Router) portfolio for Kanha Jodhpurkar — field marketing & coordination.
+Next.js 14 (App Router) portfolio for Kanha Jodhpurkar — field marketing, event coordination & vendor partnerships.
 
 ## Working agreements
 - **Push changes directly to `main`** without asking for confirmation and without opening a PR, unless explicitly told otherwise.

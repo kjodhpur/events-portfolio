@@ -44,7 +44,7 @@ export default async function Home() {
         {/* hero */}
         <section className="hero">
           <div className="wrap">
-            <div className="kicker">Field Marketing &amp; Event Coordination · San Francisco</div>
+            <div className="kicker">Field Marketing, Event Coordination &amp; Vendor Partnerships · San Francisco</div>
             <h1>
               I run <em>in-person events</em> end to end, from the first vendor call to the final breakdown.
             </h1>
