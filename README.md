@@ -1,18 +1,13 @@
-# Kanha — Events Portfolio (upload app)
+# Events portfolio
 
-A real, deployable portfolio: a public scrolling page of stacked events, plus a private
-`/admin` panel where you log in and add events, upload photos and short videos, paste
-YouTube/Vimeo links for longer video, and attach article links. Built with **Next.js +
-Supabase** (Postgres, Storage, Auth), made to host on **Vercel**.
+Public timeline of events produced and attended, with a private `/admin` for media and links.
 
----
-
-## Hand this to Claude Code
-
-Open this folder in Claude Code on desktop and say: *"Set up and deploy this app."* The steps
-below are what it (or you) will do. Nothing here needs to be edited by hand except `.env.local`.
+**Live** · https://events-portfolio-ivory.vercel.app  
+**Stack** · Next.js · Supabase (Postgres, Storage, Auth) · Vercel
 
 ---
+
+## Setup
 
 ## 1. Create the Supabase project
 1. Go to supabase.com, create a new project (free tier is fine to start).
