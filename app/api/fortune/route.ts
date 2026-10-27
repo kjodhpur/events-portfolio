@@ -1,4 +1,4 @@
-import opentype from "opentype.js";
+import * as opentype from "opentype.js";
 import sharp from "sharp";
 import { FORTUNE_FONT_BASE64 } from "@/lib/fortune-font";
 import { QUOTES } from "@/lib/profile-quotes";
@@ -7,13 +7,15 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 export const runtime = "nodejs";
 
-function loadFont() {
+let FONT: opentype.Font | null = null;
+function getFont(): opentype.Font {
+  if (FONT) return FONT;
   const bin = Buffer.from(FORTUNE_FONT_BASE64, "base64");
-  return opentype.parse(
+  FONT = opentype.parse(
     bin.buffer.slice(bin.byteOffset, bin.byteOffset + bin.byteLength)
   );
+  return FONT;
 }
-const FONT = loadFont();
 
 /** Match make_ascii_svg.py portrait geometry + typewriter reveal. */
 const COLS = 180;
@@ -76,14 +78,15 @@ async function quoteToAsciiRows(quote: string, author: string): Promise<string[]
   const y0 = Math.floor((H - blockH) / 2);
 
   // Draw real glyph outlines (no system fonts needed on Vercel).
+  const font = getFont();
   const pathNodes: string[] = [];
   lines.forEach((line, i) => {
     const size = line.startsWith("—") ? fontSize * 0.85 : fontSize;
     const fill = line.startsWith("—") ? "#666666" : "#1a1a1a";
-    const tw = FONT.getAdvanceWidth(line, size);
+    const tw = font.getAdvanceWidth(line, size);
     const x = (W - tw) / 2;
     const y = y0 + i * lineH + fontSize;
-    const p = FONT.getPath(line, x, y, size);
+    const p = font.getPath(line, x, y, size);
     pathNodes.push(
       `<path d="${p.toPathData(2)}" fill="${fill}"/>`
     );
@@ -156,7 +159,7 @@ async function renderSvg(): Promise<string> {
     `<svg xmlns="http://www.w3.org/2000/svg" width="${CANVAS_W}" height="${CANVAS_H}" ` +
       `viewBox="0 0 ${CANVAS_W} ${CANVAS_H}" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">`
   );
-  parts.push(`<!-- fortune-dots-v4 subset-font-paths -->`);
+  parts.push(`<!-- fortune-dots-v5 opentype-import-fix -->`);
   parts.push(
     `<defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">` +
       `<stop offset="0" stop-color="${BG2}"/><stop offset="1" stop-color="${BG}"/>` +
