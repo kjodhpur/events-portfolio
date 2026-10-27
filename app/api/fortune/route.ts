@@ -49,19 +49,92 @@ function esc(s: string) {
     .replace(/"/g, "&quot;");
 }
 
-function wrapWords(text: string, maxChars: number): string[] {
-  const words = text.split(/\s+/);
+/** Wrap by measured glyph width so lines never exceed the ASCII canvas. */
+function wrapByWidth(
+  text: string,
+  font: opentype.Font,
+  fontSize: number,
+  maxWidth: number
+): string[] {
+  const words = text.split(/\s+/).filter(Boolean);
   const lines: string[] = [];
   let cur = "";
   for (const w of words) {
     const next = cur ? `${cur} ${w}` : w;
-    if (next.length > maxChars && cur) {
+    if (font.getAdvanceWidth(next, fontSize) > maxWidth && cur) {
       lines.push(cur);
-      cur = w;
+      // Hard-break an oversized single word rather than clipping.
+      if (font.getAdvanceWidth(w, fontSize) > maxWidth) {
+        let chunk = "";
+        for (const ch of w) {
+          const trial = chunk + ch;
+          if (font.getAdvanceWidth(trial, fontSize) > maxWidth && chunk) {
+            lines.push(chunk);
+            chunk = ch;
+          } else chunk = trial;
+        }
+        cur = chunk;
+      } else {
+        cur = w;
+      }
     } else cur = next;
   }
   if (cur) lines.push(cur);
   return lines;
+}
+
+type Layout = {
+  fontSize: number;
+  lineH: number;
+  bodyLines: string[];
+  authorLine: string;
+};
+
+/** Shrink font until the full quote + author fit inside the square. */
+function layoutQuote(
+  font: opentype.Font,
+  quote: string,
+  author: string,
+  W: number,
+  H: number
+): Layout {
+  const maxWidth = W * 0.9;
+  const maxBlock = H * 0.82;
+  const quoted = `"${quote}"`;
+  const authorLine = `— ${author}`;
+
+  for (let fontSize = 13 * 8; fontSize >= 6 * 8; fontSize -= 4) {
+    const lineH = fontSize * 1.28;
+    const bodyLines = wrapByWidth(quoted, font, fontSize, maxWidth);
+    const authorSize = fontSize * 0.85;
+    // Re-wrap author if needed at its own size
+    const authorLines = wrapByWidth(authorLine, font, authorSize, maxWidth);
+    const lineCount = bodyLines.length + 1 + authorLines.length; // + blank
+    const blockH = lineCount * lineH;
+    const widest = Math.max(
+      ...bodyLines.map((l) => font.getAdvanceWidth(l, fontSize)),
+      ...authorLines.map((l) => font.getAdvanceWidth(l, authorSize)),
+      0
+    );
+    if (blockH <= maxBlock && widest <= maxWidth) {
+      return {
+        fontSize,
+        lineH,
+        bodyLines,
+        authorLine: authorLines.join(" "),
+      };
+    }
+  }
+
+  // Last resort: smallest size, still no slice — wrap whatever fits width.
+  const fontSize = 6 * 8;
+  const lineH = fontSize * 1.28;
+  return {
+    fontSize,
+    lineH,
+    bodyLines: wrapByWidth(quoted, font, fontSize, maxWidth),
+    authorLine,
+  };
 }
 
 /** Glyph paths → luminance bitmap → same ASCII ramp as the childhood portrait. */
@@ -69,27 +142,30 @@ async function quoteToAsciiRows(quote: string, author: string): Promise<string[]
   const scale = 8;
   const W = COLS * scale;
   const H = ROWS * scale;
-  const fontSize = 13 * scale;
-  const lineH = 17 * scale;
+  const font = getFont();
+  const { fontSize, lineH, bodyLines, authorLine } = layoutQuote(
+    font,
+    quote,
+    author,
+    W,
+    H
+  );
 
-  const bodyLines = wrapWords(`"${quote}"`, 36).slice(0, 5);
-  const lines = [...bodyLines, "", `— ${author}`];
+  const lines = [...bodyLines, "", authorLine];
   const blockH = lines.length * lineH;
   const y0 = Math.floor((H - blockH) / 2);
 
-  // Draw real glyph outlines (no system fonts needed on Vercel).
-  const font = getFont();
   const pathNodes: string[] = [];
   lines.forEach((line, i) => {
-    const size = line.startsWith("—") ? fontSize * 0.85 : fontSize;
-    const fill = line.startsWith("—") ? "#666666" : "#1a1a1a";
+    if (!line) return;
+    const isAuthor = line.startsWith("—");
+    const size = isAuthor ? fontSize * 0.85 : fontSize;
+    const fill = isAuthor ? "#666666" : "#1a1a1a";
     const tw = font.getAdvanceWidth(line, size);
     const x = (W - tw) / 2;
     const y = y0 + i * lineH + fontSize;
     const p = font.getPath(line, x, y, size);
-    pathNodes.push(
-      `<path d="${p.toPathData(2)}" fill="${fill}"/>`
-    );
+    pathNodes.push(`<path d="${p.toPathData(2)}" fill="${fill}"/>`);
   });
 
   const textSvg = `<?xml version="1.0" encoding="UTF-8"?>
@@ -159,7 +235,7 @@ async function renderSvg(): Promise<string> {
     `<svg xmlns="http://www.w3.org/2000/svg" width="${CANVAS_W}" height="${CANVAS_H}" ` +
       `viewBox="0 0 ${CANVAS_W} ${CANVAS_H}" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">`
   );
-  parts.push(`<!-- fortune-dots-v5 opentype-import-fix -->`);
+  parts.push(`<!-- fortune-dots-v6 fit-wrap -->`);
   parts.push(
     `<defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">` +
       `<stop offset="0" stop-color="${BG2}"/><stop offset="1" stop-color="${BG}"/>` +
