@@ -1,24 +1,19 @@
-import fs from "fs";
-import path from "path";
 import opentype from "opentype.js";
 import sharp from "sharp";
+import { FORTUNE_FONT_BASE64 } from "@/lib/fortune-font";
 import { QUOTES } from "@/lib/profile-quotes";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 export const runtime = "nodejs";
 
-const FONT_PATH = path.join(
-  process.cwd(),
-  "lib/fonts/DejaVuSansMono-Bold.ttf"
-);
-const _fontBuf = fs.readFileSync(FONT_PATH);
-const FONT = opentype.parse(
-  _fontBuf.buffer.slice(
-    _fontBuf.byteOffset,
-    _fontBuf.byteOffset + _fontBuf.byteLength
-  )
-);
+function loadFont() {
+  const bin = Buffer.from(FORTUNE_FONT_BASE64, "base64");
+  return opentype.parse(
+    bin.buffer.slice(bin.byteOffset, bin.byteOffset + bin.byteLength)
+  );
+}
+const FONT = loadFont();
 
 /** Match make_ascii_svg.py portrait geometry + typewriter reveal. */
 const COLS = 180;
@@ -161,6 +156,7 @@ async function renderSvg(): Promise<string> {
     `<svg xmlns="http://www.w3.org/2000/svg" width="${CANVAS_W}" height="${CANVAS_H}" ` +
       `viewBox="0 0 ${CANVAS_W} ${CANVAS_H}" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">`
   );
+  parts.push(`<!-- fortune-dots-v3 opentype-paths -->`);
   parts.push(
     `<defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">` +
       `<stop offset="0" stop-color="${BG2}"/><stop offset="1" stop-color="${BG}"/>` +
