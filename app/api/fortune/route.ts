@@ -156,7 +156,7 @@ async function renderSvg(): Promise<string> {
     `<svg xmlns="http://www.w3.org/2000/svg" width="${CANVAS_W}" height="${CANVAS_H}" ` +
       `viewBox="0 0 ${CANVAS_W} ${CANVAS_H}" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">`
   );
-  parts.push(`<!-- fortune-dots-v3 opentype-paths -->`);
+  parts.push(`<!-- fortune-dots-v4 subset-font-paths -->`);
   parts.push(
     `<defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">` +
       `<stop offset="0" stop-color="${BG2}"/><stop offset="1" stop-color="${BG}"/>` +
