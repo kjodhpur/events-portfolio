@@ -1,32 +1,29 @@
+import sharp from "sharp";
 import { QUOTES } from "@/lib/profile-quotes";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+export const runtime = "nodejs";
 
-/**
- * Same terminal chrome + typewriter clip-wipe as kanha-ascii.svg,
- * sized as the whoami square (840×880). Fewer/larger cells so the
- * quote stays readable at the README's 420px width.
- */
-const COLS = 48;
+/** Match make_ascii_svg.py portrait geometry + typewriter reveal. */
+const COLS = 180;
 const ART_W = 800;
 const CELL_W = ART_W / COLS;
 const CELL_H = (CELL_W * 15) / 8;
+const ROWS = Math.round((COLS * 8) / 15); // 96
 const PAD = 20;
 const TITLEBAR_H = 30;
 const STATUS_H = 30;
-const CANVAS_W = ART_W + PAD * 2; // 840
-const ART_H_TARGET = 800;
-const ROWS = Math.round(ART_H_TARGET / CELL_H); // ~25
+const CANVAS_W = ART_W + PAD * 2;
 const ART_H = ROWS * CELL_H;
-const CANVAS_H = TITLEBAR_H + ART_H + STATUS_H + PAD; // ~880
+const CANVAS_H = TITLEBAR_H + ART_H + STATUS_H + PAD;
 
+const RAMP = " .`:-=+*cs#%@";
 const BG = "#0d1117";
 const BG2 = "#111722";
 const FRAME = "#30363d";
 const TITLE_TEXT = "#7d8590";
 const INK = "#c9d1d9";
-const ACCENT = "#58a6ff";
 const CURSOR = "#c9d1d9";
 
 const ROW_DUR = 5.8 / ROWS;
@@ -40,13 +37,13 @@ function esc(s: string) {
     .replace(/"/g, "&quot;");
 }
 
-function wrap(text: string, width: number): string[] {
+function wrapWords(text: string, maxChars: number): string[] {
   const words = text.split(/\s+/);
   const lines: string[] = [];
   let cur = "";
   for (const w of words) {
     const next = cur ? `${cur} ${w}` : w;
-    if (next.length > width && cur) {
+    if (next.length > maxChars && cur) {
       lines.push(cur);
       cur = w;
     } else cur = next;
@@ -55,34 +52,93 @@ function wrap(text: string, width: number): string[] {
   return lines;
 }
 
-function padCenter(s: string, width: number): string {
-  if (s.length >= width) return s.slice(0, width);
-  const left = Math.floor((width - s.length) / 2);
-  return " ".repeat(left) + s + " ".repeat(width - left - s.length);
-}
+/** Render quote as luminance bitmap → same ASCII ramp as the childhood portrait. */
+async function quoteToAsciiRows(quote: string, author: string): Promise<string[]> {
+  const scale = 8;
+  const W = COLS * scale;
+  const H = ROWS * scale;
+  const fontSize = 13 * scale;
+  const lineH = 17 * scale;
 
-function buildRows(quote: string, author: string): string[] {
-  const quoteLines = wrap(quote, COLS - 4).slice(0, 8);
-  const block = [...quoteLines, "", `— ${author}`];
-  const rows: string[] = Array.from({ length: ROWS }, () => " ".repeat(COLS));
-  const start = Math.max(0, Math.floor((ROWS - block.length) / 2));
-  block.forEach((line, i) => {
-    const r = start + i;
-    if (r >= 0 && r < ROWS) rows[r] = padCenter(line, COLS);
-  });
+  const bodyLines = wrapWords(`"${quote}"`, 36).slice(0, 5);
+  const lines = [...bodyLines, "", `— ${author}`];
+  const blockH = lines.length * lineH;
+  const y0 = Math.floor((H - blockH) / 2);
+
+  const textNodes = lines
+    .map((line, i) => {
+      const fill = line.startsWith("—") ? "#666666" : "#1a1a1a";
+      const size = line.startsWith("—") ? fontSize * 0.85 : fontSize;
+      return `<text x="50%" y="${y0 + i * lineH + fontSize}" text-anchor="middle" font-size="${size}" fill="${fill}" font-family="ui-monospace, DejaVu Sans Mono, Menlo, Consolas, monospace" font-weight="700">${esc(line)}</text>`;
+    })
+    .join("");
+
+  const textSvg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  ${textNodes}
+</svg>`;
+
+  const { data } = await sharp(Buffer.from(textSvg))
+    .greyscale()
+    .resize(COLS, ROWS, { kernel: "lanczos3" })
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+
+  // Autocontrast-ish: stretch luminances that aren't pure white
+  let lo = 255;
+  let hi = 0;
+  for (let i = 0; i < data.length; i++) {
+    const v = data[i];
+    if (v < 250) {
+      if (v < lo) lo = v;
+      if (v > hi) hi = v;
+    }
+  }
+  if (hi <= lo) {
+    hi = 255;
+    lo = 0;
+  }
+
+  const rows: string[] = [];
+  for (let y = 0; y < ROWS; y++) {
+    let line = "";
+    for (let x = 0; x < COLS; x++) {
+      let lum = data[y * COLS + x] / 255;
+      // stretch subject tones
+      const raw = data[y * COLS + x];
+      if (raw < 250) {
+        lum = (raw - lo) / (hi - lo);
+        lum = Math.min(1, Math.max(0, lum));
+      } else {
+        lum = 1;
+      }
+      lum = Math.pow(lum, 1.12);
+      if (lum >= 0.9) {
+        line += " ";
+      } else {
+        const idx = Math.min(
+          RAMP.length - 1,
+          Math.floor((1 - lum) * (RAMP.length - 1))
+        );
+        line += RAMP[idx];
+      }
+    }
+    rows.push(line);
+  }
   return rows;
 }
 
-function renderSvg() {
+async function renderSvg(): Promise<string> {
   const q = QUOTES[Math.floor(Math.random() * QUOTES.length)];
-  const rowsTxt = buildRows(q.text, q.author || "Unknown");
+  const rowsTxt = await quoteToAsciiRows(q.text, q.author || "Unknown");
   const artTop = TITLEBAR_H + PAD * 0.35;
-  const fontSize = CELL_H * 0.72;
+  const fontSize = CELL_H * 0.86;
 
   const parts: string[] = [];
   parts.push(
-    `<svg xmlns="http://www.w3.org/2000/svg" width="${CANVAS_W}" height="${CANVAS_H.toFixed(1)}" ` +
-      `viewBox="0 0 ${CANVAS_W} ${CANVAS_H.toFixed(1)}" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">`
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${CANVAS_W}" height="${CANVAS_H}" ` +
+      `viewBox="0 0 ${CANVAS_W} ${CANVAS_H}" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">`
   );
   parts.push(
     `<defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">` +
@@ -90,10 +146,10 @@ function renderSvg() {
       `</linearGradient></defs>`
   );
   parts.push(
-    `<rect width="${CANVAS_W}" height="${CANVAS_H.toFixed(1)}" rx="12" fill="url(#bg)"/>`
+    `<rect width="${CANVAS_W}" height="${CANVAS_H}" rx="12" fill="url(#bg)"/>`
   );
   parts.push(
-    `<rect x="0.5" y="0.5" width="${CANVAS_W - 1}" height="${(CANVAS_H - 1).toFixed(1)}" rx="12" fill="none" stroke="${FRAME}" stroke-width="1"/>`
+    `<rect x="0.5" y="0.5" width="${CANVAS_W - 1}" height="${CANVAS_H - 1}" rx="12" fill="none" stroke="${FRAME}" stroke-width="1"/>`
   );
   parts.push(
     `<line x1="0" y1="${TITLEBAR_H}" x2="${CANVAS_W}" y2="${TITLEBAR_H}" stroke="${FRAME}"/>`
@@ -112,10 +168,10 @@ function renderSvg() {
     const y = artTop + ry * CELL_H + CELL_H * 0.74;
     const rowY = artTop + ry * CELL_H;
     const delay = ry * STAGGER;
-    const fill = line.trim().startsWith("—") ? ACCENT : INK;
+    const safe = esc(line);
     const text =
-      `<text xml:space="preserve" x="${PAD}" y="${y.toFixed(1)}" fill="${fill}" ` +
-      `font-size="${fontSize.toFixed(1)}" textLength="${ART_W}" lengthAdjust="spacing">${esc(line)}</text>`;
+      `<text xml:space="preserve" x="${PAD}" y="${y.toFixed(1)}" fill="${INK}" ` +
+      `font-size="${fontSize.toFixed(1)}" textLength="${ART_W}" lengthAdjust="spacing">${safe}</text>`;
 
     parts.push(
       `<clipPath id="r${ry}"><rect x="${PAD}" y="${rowY.toFixed(1)}" height="${CELL_H}" width="0">` +
@@ -139,9 +195,10 @@ function renderSvg() {
   );
   parts.push(
     `<text x="${PAD}" y="${statusY.toFixed(1)}" fill="${TITLE_TEXT}" font-size="13">` +
-      `kanha@github:~$ fortune <tspan fill="${INK}">→ new quote every refresh</tspan></text>`
+      `kanha@github:~$ fortune <tspan fill="${INK}">→ dots type in · new quote every refresh</tspan></text>`
   );
-  const statusChars = "kanha@github:~$ fortune → new quote every refresh ".length;
+  const statusChars =
+    "kanha@github:~$ fortune → dots type in · new quote every refresh ".length;
   parts.push(
     `<rect x="${(PAD + statusChars * 13 * 0.6).toFixed(1)}" y="${(statusY - 12).toFixed(1)}" width="8" height="14" fill="${INK}">` +
       `<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.51;1" dur="1s" repeatCount="indefinite"/></rect>`
@@ -152,17 +209,23 @@ function renderSvg() {
 }
 
 export async function GET() {
-  const svg = renderSvg();
-  return new Response(svg, {
-    status: 200,
-    headers: {
-      "Content-Type": "image/svg+xml; charset=utf-8",
-      "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0, s-maxage=0",
-      "CDN-Cache-Control": "no-store",
-      "Vercel-CDN-Cache-Control": "no-store",
-      Pragma: "no-cache",
-      Expires: "0",
-      "Access-Control-Allow-Origin": "*",
-    },
-  });
+  try {
+    const svg = await renderSvg();
+    return new Response(svg, {
+      status: 200,
+      headers: {
+        "Content-Type": "image/svg+xml; charset=utf-8",
+        "Cache-Control":
+          "no-store, no-cache, must-revalidate, max-age=0, s-maxage=0",
+        "CDN-Cache-Control": "no-store",
+        "Vercel-CDN-Cache-Control": "no-store",
+        Pragma: "no-cache",
+        Expires: "0",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "fortune render failed";
+    return new Response(`fortune error: ${message}`, { status: 500 });
+  }
 }
