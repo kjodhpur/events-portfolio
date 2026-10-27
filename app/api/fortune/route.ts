@@ -1,9 +1,19 @@
+import fs from "fs";
+import path from "path";
 import sharp from "sharp";
 import { QUOTES } from "@/lib/profile-quotes";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 export const runtime = "nodejs";
+
+const FONT_PATH = path.join(
+  process.cwd(),
+  "lib/fonts/DejaVuSansMono-Bold.ttf"
+);
+const FONT_DATA_URI = `data:font/ttf;base64,${fs
+  .readFileSync(FONT_PATH)
+  .toString("base64")}`;
 
 /** Match make_ascii_svg.py portrait geometry + typewriter reveal. */
 const COLS = 180;
@@ -69,12 +79,23 @@ async function quoteToAsciiRows(quote: string, author: string): Promise<string[]
     .map((line, i) => {
       const fill = line.startsWith("—") ? "#666666" : "#1a1a1a";
       const size = line.startsWith("—") ? fontSize * 0.85 : fontSize;
-      return `<text x="50%" y="${y0 + i * lineH + fontSize}" text-anchor="middle" font-size="${size}" fill="${fill}" font-family="ui-monospace, DejaVu Sans Mono, Menlo, Consolas, monospace" font-weight="700">${esc(line)}</text>`;
+      return `<text x="50%" y="${y0 + i * lineH + fontSize}" text-anchor="middle" font-size="${size}" fill="${fill}" font-family="FortuneMono">${esc(line)}</text>`;
     })
     .join("");
 
+  // Embed mono font so Vercel/librsvg rasterizes real letter shapes (not tofu).
   const textSvg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
+  <defs>
+    <style type="text/css"><![CDATA[
+      @font-face {
+        font-family: "FortuneMono";
+        src: url("${FONT_DATA_URI}") format("truetype");
+        font-weight: 700;
+        font-style: normal;
+      }
+    ]]></style>
+  </defs>
   <rect width="100%" height="100%" fill="#ffffff"/>
   ${textNodes}
 </svg>`;
