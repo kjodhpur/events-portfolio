@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import opentype from "opentype.js";
 import sharp from "sharp";
 import { QUOTES } from "@/lib/profile-quotes";
 
@@ -11,9 +12,13 @@ const FONT_PATH = path.join(
   process.cwd(),
   "lib/fonts/DejaVuSansMono-Bold.ttf"
 );
-const FONT_DATA_URI = `data:font/ttf;base64,${fs
-  .readFileSync(FONT_PATH)
-  .toString("base64")}`;
+const _fontBuf = fs.readFileSync(FONT_PATH);
+const FONT = opentype.parse(
+  _fontBuf.buffer.slice(
+    _fontBuf.byteOffset,
+    _fontBuf.byteOffset + _fontBuf.byteLength
+  )
+);
 
 /** Match make_ascii_svg.py portrait geometry + typewriter reveal. */
 const COLS = 180;
@@ -62,7 +67,7 @@ function wrapWords(text: string, maxChars: number): string[] {
   return lines;
 }
 
-/** Render quote as luminance bitmap → same ASCII ramp as the childhood portrait. */
+/** Glyph paths → luminance bitmap → same ASCII ramp as the childhood portrait. */
 async function quoteToAsciiRows(quote: string, author: string): Promise<string[]> {
   const scale = 8;
   const W = COLS * scale;
@@ -75,29 +80,24 @@ async function quoteToAsciiRows(quote: string, author: string): Promise<string[]
   const blockH = lines.length * lineH;
   const y0 = Math.floor((H - blockH) / 2);
 
-  const textNodes = lines
-    .map((line, i) => {
-      const fill = line.startsWith("—") ? "#666666" : "#1a1a1a";
-      const size = line.startsWith("—") ? fontSize * 0.85 : fontSize;
-      return `<text x="50%" y="${y0 + i * lineH + fontSize}" text-anchor="middle" font-size="${size}" fill="${fill}" font-family="FortuneMono">${esc(line)}</text>`;
-    })
-    .join("");
+  // Draw real glyph outlines (no system fonts needed on Vercel).
+  const pathNodes: string[] = [];
+  lines.forEach((line, i) => {
+    const size = line.startsWith("—") ? fontSize * 0.85 : fontSize;
+    const fill = line.startsWith("—") ? "#666666" : "#1a1a1a";
+    const tw = FONT.getAdvanceWidth(line, size);
+    const x = (W - tw) / 2;
+    const y = y0 + i * lineH + fontSize;
+    const p = FONT.getPath(line, x, y, size);
+    pathNodes.push(
+      `<path d="${p.toPathData(2)}" fill="${fill}"/>`
+    );
+  });
 
-  // Embed mono font so Vercel/librsvg rasterizes real letter shapes (not tofu).
   const textSvg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
-  <defs>
-    <style type="text/css"><![CDATA[
-      @font-face {
-        font-family: "FortuneMono";
-        src: url("${FONT_DATA_URI}") format("truetype");
-        font-weight: 700;
-        font-style: normal;
-      }
-    ]]></style>
-  </defs>
   <rect width="100%" height="100%" fill="#ffffff"/>
-  ${textNodes}
+  ${pathNodes.join("")}
 </svg>`;
 
   const { data } = await sharp(Buffer.from(textSvg))
